@@ -1,0 +1,87 @@
+<TableLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:shrinkColumns="*"  android:stretchColumns="*" android:background="#ffffff">
+    <TableRow
+        android:layout_height="match_parent"
+        android:layout_width="match_parent">
+        
+        <Button android:id="@+id/tap7"
+	        android:layout_width="wrap_content"
+	        android:layout_height="fill_parent"
+	        android:onClick="inputNumber"
+	        android:text="@string/tap7" />
+        
+        <Button android:id="@+id/tap8"
+	        android:layout_width="wrap_content"
+	        android:layout_height="fill_parent"
+	        android:onClick="inputNumber"
+	        android:text="@string/tap8" />
+        
+        <Button android:id="@+id/tap9"
+	        android:layout_width="wrap_content"
+	        android:layout_height="fill_parent"
+	        android:onClick="inputNumber"
+	        android:text="@string/tap9" />
+    </TableRow>
+    
+    <TableRow
+        android:layout_height="match_parent"
+        android:layout_width="match_parent">
+        
+        <Button android:id="@+id/tap4"
+	        android:layout_width="wrap_content"
+	        android:layout_height="fill_parent"
+	        android:onClick="inputNumber"
+	        android:text="@string/tap4" />
+        
+        <Button android:id="@+id/tap5"
+	        android:layout_width="wrap_content"
+	        android:layout_height="fill_parent"
+	        android:onClick="inputNumber"
+	        android:text="@string/tap5" />
+        
+        <Button android:id="@+id/tap6"
+	        android:layout_width="wrap_content"
+	        android:layout_height="fill_parent"
+	        android:onClick="inputNumber"
+	        android:text="@string/tap6" />
+    </TableRow>
+
+    <TableRow
+        android:layout_height="match_parent"
+        android:layout_width="match_parent">
+        
+        <Button android:id="@+id/tap1"
+	        android:layout_width="wrap_content"
+	        android:layout_height="fill_parent"
+	        android:onClick="inputNumber"
+	        android:text="@string/tap1" />
+        
+        <Button android:id="@+id/tap2"
+	        android:layout_width="wrap_content"
+	        android:layout_height="fill_parent"
+	        android:onClick="inputNumber"
+	        android:text="@string/tap2" />
+        
+        <Button android:id="@+id/tap3"            
+	        android:layout_width="wrap_content"
+	        android:layout_height="fill_parent"
+	        android:onClick="inputNumber"
+	        android:text="@string/tap3" />
+    </TableRow>
+        
+    <TableRow
+        android:layout_height="match_parent"
+        android:layout_width="match_parent">
+        
+        <Button android:id="@+id/tap0"
+	        android:layout_width="wrap_content"
+	        android:layout_height="fill_parent"
+	        android:onClick="inputNumber"
+	        android:text="@string/tap0" />
+    </TableRow>
+                                                  
+                       
+ </TableLayout>

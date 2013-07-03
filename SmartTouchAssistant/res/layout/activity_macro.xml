@@ -1,0 +1,33 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+  	android:orientation="vertical" >  
+	  
+	<EditText android:id="@+id/shortcut1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/shortcut_selection" />
+	
+	<EditText android:id="@+id/shortcut2"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/shortcut_selection" />
+	
+	<EditText android:id="@+id/shortcut3"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/shortcut_selection" />
+	
+	<EditText android:id="@+id/shortcut4"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/shortcut_selection" />
+	
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="confirmMacros"
+        android:text="@string/confirm_selection" />
+        
+</LinearLayout>

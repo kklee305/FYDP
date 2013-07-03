@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">SmartTouch Assistant</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="edit_message">Enter a message</string>
+    <string name="button_USB">Use USB</string>
+    <string name="button_bluetooth">Use Bluetooth</string>
+    <string name="title_activity_main">Main Screen</string>
+    <string name="title_activity_display_options">Select your input option</string>
+    <string name="title_activity_macro">MacroActivity</string>
+    <string name="title_activity_mouse">MouseActivity</string>
+    <string name="title_activity_macro_controller">MacroControllerActivity</string>
+    <string name="confirm_selection">Confirm</string>
+    <string name="shortcut_selection">Enter a shortcut</string>
+    <string name="shortcut1">Use 1</string>
+    <string name="shortcut2">Use 2</string>
+    <string name="shortcut3">Use 3</string>
+    <string name="shortcut4">Use 4</string>
+    <string name="mouseOption">Use as mouse</string>
+    <string name="macroOption">Use as macro input</string>
+    <string name="controllerOption">Use as controller</string>
+    <string name="numpadOption">Use as numpad</string>
+    <string name="title_activity_controller">ControllerActivity</string>
+    <string name="title_activity_numpad">NumpadActivity</string>
+    
+    <string name="tap1">1</string>
+    <string name="tap2">2</string>
+    <string name="tap3">3</string>
+    <string name="tap4">4</string>
+    <string name="tap5">5</string>
+    <string name="tap6">6</string>
+    <string name="tap7">7</string>
+    <string name="tap8">8</string>
+    <string name="tap9">9</string>
+    <string name="tap0">0</string>
+
+</resources>

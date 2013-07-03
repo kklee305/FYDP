@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.smarttouchassistant"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="14"
+        android:targetSdkVersion="17" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name="com.example.smarttouchassistant.MainScreen"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.example.smarttouchassistant.DisplayOptionsActivity"
+            android:label="@string/title_activity_display_options"
+            android:parentActivityName="com.example.smarttouchassistant.MainScreen" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.smarttouchassistant.MainScreen" />
+        </activity>
+        <activity
+            android:name="com.example.smarttouchassistant.MacroActivity"
+            android:label="@string/title_activity_macro"
+            android:parentActivityName="com.example.smarttouchassistant.DisplayOptionsActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.smarttouchassistant.DisplayOptionsActivity" />
+        </activity>
+        <activity
+            android:name="com.example.smarttouchassistant.MouseActivity"
+            android:label="@string/title_activity_mouse"
+            android:parentActivityName="com.example.smarttouchassistant.DisplayOptionsActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.smarttouchassistant.DisplayOptionsActivity" />
+        </activity>
+        <activity
+            android:name="com.example.smarttouchassistant.MacroControllerActivity"
+            android:label="@string/title_activity_macro_controller"
+            android:parentActivityName="com.example.smarttouchassistant.MacroActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.smarttouchassistant.MacroActivity" />
+        </activity>
+        <activity
+            android:name="com.example.smarttouchassistant.ControllerActivity"
+            android:label="@string/title_activity_controller"
+            android:parentActivityName="com.example.smarttouchassistant.DisplayOptionsActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.smarttouchassistant.DisplayOptionsActivity" />
+        </activity>
+        <activity
+            android:name="com.example.smarttouchassistant.NumpadActivity"
+            android:label="@string/title_activity_numpad"
+            android:parentActivityName="com.example.smarttouchassistant.DisplayOptionsActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.smarttouchassistant.DisplayOptionsActivity" />
+        </activity>
+    </application>
+
+</manifest>
