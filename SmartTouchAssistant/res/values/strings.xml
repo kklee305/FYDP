@@ -42,5 +42,7 @@
     <string name="play">Play/Pause</string>
     <string name="forward">Forward</string>
     <string name="title_activity_bluetooth_service">BluetoothService</string>
+    <string name="title_activity_bluetooth_connection">BluetoothConnectionActivity</string>
+    <string name="start">Start</string>    
 
 </resources>

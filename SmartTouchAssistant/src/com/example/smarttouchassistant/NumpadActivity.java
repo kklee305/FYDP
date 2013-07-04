@@ -1,25 +1,74 @@
 package com.example.smarttouchassistant;
 
 import android.app.Activity;
+import android.content.BroadcastReceiver;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.content.ServiceConnection;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.support.v4.app.NavUtils;
+import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
+
+import com.example.smarttouchassistant.BluetoothConnectionService.LocalBinder;
 
 public class NumpadActivity extends Activity {
 
+    BluetoothConnectionService btService;
+    boolean isBound = false;
+    
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_numpad);
+		Intent intent = new Intent(this, BluetoothConnectionService.class);
+        bindService(intent, myConnection, Context.BIND_AUTO_CREATE);   
 		// Show the Up button in the action bar.
 		setupActionBar();
+		
+		LocalBroadcastManager.getInstance(this).registerReceiver(
+	            mMessageReceiver, new IntentFilter("foregroundSwitch"));
 	}
+	
+	private ServiceConnection myConnection = new ServiceConnection() {
+		public void onServiceConnected(ComponentName className, IBinder service) {
+	        LocalBinder binder = (LocalBinder) service;
+	        btService = binder.getService();
+	        isBound = true;
+	    }
+	    
+	    public void onServiceDisconnected(ComponentName arg0) {
+	        isBound = false;
+	    }    	    
+	};
+	
+	private BroadcastReceiver mMessageReceiver = new BroadcastReceiver() {
+	    @Override
+	    public void onReceive(Context context, Intent intent) {
+	        String newForeground = intent.getStringExtra("foreground");
+	        Log.d("DEBUG", this.toString() + " received foreground switch request to " + newForeground);
+	        if(!newForeground.equals("numpad")) {
+	        	Intent next = null;
+		        if(newForeground.equals("mouse")) {
+		        	next = new Intent(context, MouseActivity.class);
+		        } else if(newForeground.equals("controller")) {
+		        	next = new Intent(context, ControllerActivity.class);
+		        } else if(newForeground.equals("macro")) {
+		        	next = new Intent(context, MacroActivity.class);
+		        } else if(newForeground.equals("multimedia")) {
+		        	next = new Intent(context, MultiMediaActivity.class);
+		        }		        
+		        startActivity(next); 
+		        LocalBroadcastManager.getInstance(context).unregisterReceiver(mMessageReceiver);
+	        }	        
+	    }
+	};
 
 	/**
 	 * Set up the {@link android.app.ActionBar}.
@@ -75,10 +124,22 @@ public class NumpadActivity extends Activity {
 	    		Log.d("DEBUG", "9 tapped");
 				break;
     	}	
-    	BluetoothConnectionService.sendMessage(message);		 	
+    	btService.sendMessage(message);		 	
     }
 	
+	@Override
+	public void onPause() {
+	    super.onPause();  // Always call the superclass method first
 
+	    Log.d("DEBUG", "Numpad paused");
+	}
+	
+	@Override
+	public void onResume() {
+	    super.onResume();  // Always call the superclass method first
+
+	    Log.d("DEBUG", "Numpad resumed");
+	}
 	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {

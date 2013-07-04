@@ -5,21 +5,25 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
-import android.widget.EditText;
 
 public class MainScreen extends Activity {
 	
+    BluetoothConnectionService btService;
+    boolean isBound = false;
+    
 	public final static String EXTRA_MESSAGE = "com.example.smarttouchassistant.MESSAGE";
 	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        
+        setContentView(R.layout.activity_main);    
+       
     }
-
+    
+	
+	   
     public void chooseBluetooth(View view) {
-    	Intent intent = new Intent(this, DisplayOptionsActivity.class);
+    	Intent intent = new Intent(this, BluetoothConnectionActivity.class);
     	startActivity(intent);
     }
 
