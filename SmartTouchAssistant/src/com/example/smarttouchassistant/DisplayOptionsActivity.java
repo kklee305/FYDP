@@ -1,19 +1,23 @@
 package com.example.smarttouchassistant;
 
 import android.app.Activity;
+import android.bluetooth.BluetoothAdapter;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class DisplayOptionsActivity extends Activity {
 
+    
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_display_options);
+
 		
 	}
 	
@@ -34,6 +38,11 @@ public class DisplayOptionsActivity extends Activity {
 	
 	public void numpadOption(View view) {
     	Intent intent = new Intent(this, NumpadActivity.class);
+    	startActivity(intent);
+    }
+	
+	public void multiMediaOption(View view) {
+    	Intent intent = new Intent(this, MultiMediaActivity.class);
     	startActivity(intent);
     }
 

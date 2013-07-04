@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -30,33 +31,51 @@ public class NumpadActivity extends Activity {
 	}
 	
 	public void inputNumber(View view) {
-		Context context = getApplicationContext();
-		CharSequence text = "";
-		int duration = Toast.LENGTH_SHORT;
+		String message = null;
+		
     	switch (view.getId()) {
-	    	case R.id.tap0: text = "0 tapped";
-	    					break;
-	    	case R.id.tap1: text = "1 tapped";
-	    					break;
-	    	case R.id.tap2: text = "2 tapped";
-							break;
-	    	case R.id.tap3: text = "3 tapped";
-							break;
-	    	case R.id.tap4: text = "4 tapped";
-							break;
-	    	case R.id.tap5: text = "5 tapped";
-							break;
-	    	case R.id.tap6: text = "6 tapped";
-	    					break;
-	    	case R.id.tap7: text = "7 tapped";
-							break;
-	    	case R.id.tap8: text = "8 tapped";
-							break;
-	    	case R.id.tap9: text = "9 tapped";
-							break;
+	    	case R.id.tap0: 
+	    		message = "0";
+	    		Log.d("DEBUG", "0 tapped");
+	    		break;
+	    	case R.id.tap1: 
+	    		message = "1";
+	    		Log.d("DEBUG", "1 tapped");
+	    		break;
+	    	case R.id.tap2:
+	    		message = "2";
+	    		Log.d("DEBUG", "2 tapped");
+				break;
+	    	case R.id.tap3: 
+	    		message = "3";
+	    		Log.d("DEBUG", "3 tapped");
+				break;
+	    	case R.id.tap4: 
+	    		message = "4";
+	    		Log.d("DEBUG", "4 tapped");
+				break;
+	    	case R.id.tap5: 
+	    		message = "5";
+	    		Log.d("DEBUG", "5 tapped");
+				break;
+	    	case R.id.tap6: 
+	    		message = "6";
+	    		Log.d("DEBUG", "6 tapped");
+	    		break;
+	    	case R.id.tap7:
+	    		message = "7";
+	    		Log.d("DEBUG", "7 tapped");
+				break;
+	    	case R.id.tap8: 
+	    		message = "8";
+	    		Log.d("DEBUG", "8 tapped");
+				break;
+	    	case R.id.tap9: 
+	    		message = "9";
+	    		Log.d("DEBUG", "9 tapped");
+				break;
     	}	
-		Toast toast = Toast.makeText(context, text, duration);
-		toast.show();    	
+    	BluetoothConnectionService.sendMessage(message);		 	
     }
 	
 

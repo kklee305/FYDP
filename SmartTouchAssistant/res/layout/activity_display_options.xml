@@ -27,5 +27,11 @@
         android:layout_height="wrap_content"
         android:onClick="numpadOption"
         android:text="@string/numpadOption" />
+    
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="multiMediaOption"
+        android:text="@string/multiMediaOption" />
         
 </LinearLayout>

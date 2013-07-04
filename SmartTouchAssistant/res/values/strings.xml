@@ -24,7 +24,6 @@
     <string name="numpadOption">Use as numpad</string>
     <string name="title_activity_controller">ControllerActivity</string>
     <string name="title_activity_numpad">NumpadActivity</string>
-    
     <string name="tap1">1</string>
     <string name="tap2">2</string>
     <string name="tap3">3</string>
@@ -35,5 +34,13 @@
     <string name="tap8">8</string>
     <string name="tap9">9</string>
     <string name="tap0">0</string>
+    <string name="title_activity_multi_media">MultiMediaActivity</string>
+    <string name="multiMediaOption">Use as multimedia controller</string>
+    <string name="volumeUp">+</string>
+    <string name="volumeDown">-</string>
+    <string name="rewind">Rewind</string>
+    <string name="play">Play/Pause</string>
+    <string name="forward">Forward</string>
+    <string name="title_activity_bluetooth_service">BluetoothService</string>
 
 </resources>
