@@ -2,15 +2,83 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/axis_device"
+    android:clickable="false"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".ControllerActivity" >
+    android:paddingTop="@dimen/activity_vertical_margin">
 
     <TextView
+        android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/hello_world" />
+        android:text="SmartTouchAssist" />
+
+    <TextView
+        android:id="@+id/textPitch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:text="Pitch" />
+
+    <TextView
+        android:id="@+id/textAzimuth"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textRoll"
+        android:layout_below="@+id/textRoll"
+        android:text="Azimuth" />
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/textView1"
+        android:clickable="false"
+        android:text="Calibrate" />
+
+    <ImageView
+        android:id="@+id/imageMoveMe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/textPitch"
+        android:layout_alignLeft="@+id/textPitch"
+        android:src="@drawable/mouse_cursor_icon" />
+
+    <TextView
+        android:id="@+id/textRoll"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textPitch"
+        android:layout_below="@+id/textPitch"
+        android:text="Roll" />
+
+    <TextView
+        android:id="@+id/currentPitch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView1"
+        android:layout_below="@+id/textView1"
+        android:text="Pitch" />
+
+    <TextView
+        android:id="@+id/currentRoll"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/currentPitch"
+        android:layout_below="@+id/currentPitch"
+        android:text="Roll" />
+
+    <TextView
+        android:id="@+id/currentAzimuth"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/currentRoll"
+        android:layout_below="@+id/currentRoll"
+        android:text="Azimuth" />
+
 
 </RelativeLayout>

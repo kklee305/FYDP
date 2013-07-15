@@ -5,20 +5,22 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.support.v4.content.LocalBroadcastManager;
+import android.support.v4.view.GestureDetectorCompat;
 import android.util.Log;
+import android.view.GestureDetector;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
+import android.widget.TextView;
 
-public class MouseActivity extends Activity {
-
-	private static int oldX;
-	private static int oldY;
-	private static int xChange;
-	private static int yChange;
+public class MouseActivity extends Activity{
+	
+	private TextView textview1, textview5, textScrollx, textScrolly;	
+	private GestureDetectorCompat mDetector;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -27,13 +29,16 @@ public class MouseActivity extends Activity {
 		// Show the Up button in the action bar.
 		setupActionBar();
 		
-		oldX = -1;
-		oldY = -1;
-		xChange = -1;
-		yChange = -1;
+		mDetector = new GestureDetectorCompat(getBaseContext(),mGestureListener);
+        
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
 		LocalBroadcastManager.getInstance(this).registerReceiver(
 	            mMessageReceiver, new IntentFilter("foregroundSwitch"));
+		
+        textview5 = (TextView) findViewById(R.id.textView5);
+        textScrollx = (TextView) findViewById(R.id.textScrollx);
+        textScrolly = (TextView) findViewById(R.id.textScrolly);
 	}
 	
 	private BroadcastReceiver mMessageReceiver = new BroadcastReceiver() {
@@ -68,28 +73,7 @@ public class MouseActivity extends Activity {
 
 	}
 	
-	@Override
-	public boolean onTouchEvent(MotionEvent event){ 
-
-	    String DEBUG_TAG = "DEBUG_TAG";
-	    int newX = Math.round(event.getX() * event.getXPrecision());
-	    int newY = Math.round(event.getY() * event.getYPrecision());
-	    
-	    if(oldY < 0 || oldX < 0) { // new instance, reset history
-	    	oldX = newX;
-	    	oldY = newY;
-	    }
-	    
-	    xChange = newX - oldX;
-	    yChange = newY - oldY;
-	    
-	    oldY = newY;
-	    oldX = newX;
-	    
-    	Log.d(DEBUG_TAG, "X DIFF: " + Float.toString(xChange));
-    	Log.d(DEBUG_TAG, "Y DIFF: " + Float.toString(yChange));
-    	return true;   
-	}
+	
 
 	@Override
 	public void onPause() {
@@ -128,5 +112,43 @@ public class MouseActivity extends Activity {
 		}
 		return super.onOptionsItemSelected(item);
 	}
+
+
+	
+	public boolean onTouchEvent(MotionEvent event){ 
+    	boolean retVal = mDetector.onTouchEvent(event);
+        return retVal || super.onTouchEvent(event);    
+    }
+    
+    private final GestureDetector.SimpleOnGestureListener mGestureListener
+    = new GestureDetector.SimpleOnGestureListener() {
+    	
+        @Override
+        public boolean onDoubleTap(MotionEvent e) {
+        	textview5.setText("Double Click");
+            return true;
+        }
+        
+        @Override
+        public boolean onSingleTapUp(MotionEvent e) {
+        	textview5.setText("Single Click");
+            return true;
+        }        
+
+
+        @Override
+        public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
+        	textview1.setText("Scroll");
+        	textScrollx.setText("x: "+ String.valueOf(distanceX));
+        	textScrolly.setText("y: "+ String.valueOf(distanceY));
+            return true;
+        }
+
+        @Override
+        public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+            return true;
+        }
+    };   
+    
 
 }

@@ -65,8 +65,8 @@ public class BluetoothConnectionService extends Service{
 			Log.e(ERROR_TAG, "No default adapter");
 		}
 		
-        TestThread tt = new TestThread(this);
-        tt.start();
+        //TestThread tt = new TestThread(this);
+        //tt.start();
         pairedDevices = mBluetoothAdapter.getBondedDevices();
 		mConnectThread = null;
 		mConnectedThread = null;		
@@ -197,7 +197,7 @@ public class BluetoothConnectionService extends Service{
 	                // Read from the InputStream
 	                bytes = mmInStream.read(buffer);
 	                // Send the obtained bytes to the UI activity
-
+	                
 	            } catch (IOException e) {
 	                break;
 	            }
