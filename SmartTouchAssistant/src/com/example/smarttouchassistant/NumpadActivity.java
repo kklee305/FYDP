@@ -35,7 +35,7 @@ public class NumpadActivity extends Activity {
 		LocalBroadcastManager.getInstance(this).registerReceiver(
 	            mMessageReceiver, new IntentFilter("foregroundSwitch"));
 	}
-	
+	//Bind service to BT connection	
 	private ServiceConnection myConnection = new ServiceConnection() {
 		public void onServiceConnected(ComponentName className, IBinder service) {
 	        LocalBinder binder = (LocalBinder) service;

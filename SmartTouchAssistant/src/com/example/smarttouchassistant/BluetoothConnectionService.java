@@ -33,6 +33,10 @@ public class BluetoothConnectionService extends Service{
     public static final int MESSAGE_DEVICE_NAME = 4;
     public static final int MESSAGE_TOAST = 5;
     
+    // Well known SPP UUID
+    private static final UUID MY_UUID =
+        UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
+    
     public static final String DEBUG_TAG = "DEBUG";
     public static final String ERROR_TAG = "ERROR";
     
@@ -112,7 +116,6 @@ public class BluetoothConnectionService extends Service{
 	}
 	
 	public void sendMessage(String message) {
-		Log.d(DEBUG_TAG, "Sending " + message);
 		mConnectedThread.write(message.getBytes());
 	}
   
@@ -129,7 +132,7 @@ public class BluetoothConnectionService extends Service{
 	        // Get a BluetoothSocket to connect with the given BluetoothDevice
 	        try {
 	            // MY_UUID is the app's UUID string, also used by the server code
-	            tmp = device.createRfcommSocketToServiceRecord(UUID.fromString("fa87c0d0-afac-11de-8a39-0800200c9a66"));
+	            tmp = device.createRfcommSocketToServiceRecord(MY_UUID);
 	        } catch (IOException e) { }
 	        mmSocket = tmp;
 	    }
@@ -143,6 +146,7 @@ public class BluetoothConnectionService extends Service{
 	            // until it succeeds or throws an exception
 	        	Log.d(DEBUG_TAG, "Attempting to connect through socket...");
 	            mmSocket.connect();
+	            Log.d(DEBUG_TAG, "Connected!!");
 	        } catch (IOException connectException) {
 	            // Unable to connect; close the socket and get out
 	            try {
@@ -197,7 +201,7 @@ public class BluetoothConnectionService extends Service{
 	                // Read from the InputStream
 	                bytes = mmInStream.read(buffer);
 	                // Send the obtained bytes to the UI activity
-	                
+	                Log.d(DEBUG_TAG, "Received: " + buffer.toString());
 	            } catch (IOException e) {
 	                break;
 	            }
@@ -207,6 +211,7 @@ public class BluetoothConnectionService extends Service{
 	    /* Call this from the main activity to send data to the remote device */
 	    public void write(byte[] bytes) {
 	        try {
+	        	Log.d(DEBUG_TAG, "sending " + bytes.toString());
 	            mmOutStream.write(bytes);
 	        } catch (IOException e) { }
 	    }

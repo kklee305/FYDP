@@ -1,12 +1,17 @@
 package com.example.smarttouchassistant;
 
+import com.example.smarttouchassistant.BluetoothConnectionService.LocalBinder;
+
 import android.app.Activity;
 import android.content.BroadcastReceiver;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.ServiceConnection;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.support.v4.app.NavUtils;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.view.GestureDetectorCompat;
@@ -19,13 +24,17 @@ import android.widget.TextView;
 
 public class MouseActivity extends Activity{
 	
-	private TextView textview1, textview5, textScrollx, textScrolly;	
+	private TextView textview5, textScrollx, textScrolly;	
 	private GestureDetectorCompat mDetector;
-	
+	BluetoothConnectionService btService;
+    boolean isBound = false;
+    
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_mouse);
+		Intent intent = new Intent(this, BluetoothConnectionService.class);
+        bindService(intent, myConnection, Context.BIND_AUTO_CREATE);   
 		// Show the Up button in the action bar.
 		setupActionBar();
 		
@@ -40,6 +49,18 @@ public class MouseActivity extends Activity{
         textScrollx = (TextView) findViewById(R.id.textScrollx);
         textScrolly = (TextView) findViewById(R.id.textScrolly);
 	}
+	//Bind service to BT connection	
+	private ServiceConnection myConnection = new ServiceConnection() {
+		public void onServiceConnected(ComponentName className, IBinder service) {
+	        LocalBinder binder = (LocalBinder) service;
+	        btService = binder.getService();
+	        isBound = true;
+	    }
+	    
+	    public void onServiceDisconnected(ComponentName arg0) {
+	        isBound = false;
+	    }    	    
+	};
 	
 	private BroadcastReceiver mMessageReceiver = new BroadcastReceiver() {
 	    @Override
@@ -126,21 +147,24 @@ public class MouseActivity extends Activity{
         @Override
         public boolean onDoubleTap(MotionEvent e) {
         	textview5.setText("Double Click");
+        	btService.sendMessage("Double Click");
             return true;
         }
         
         @Override
         public boolean onSingleTapUp(MotionEvent e) {
         	textview5.setText("Single Click");
+        	btService.sendMessage("Single Click");
             return true;
         }        
 
 
         @Override
         public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
-        	textview1.setText("Scroll");
         	textScrollx.setText("x: "+ String.valueOf(distanceX));
         	textScrolly.setText("y: "+ String.valueOf(distanceY));
+        	btService.sendMessage(String.valueOf(distanceX));
+        	btService.sendMessage(String.valueOf(distanceY));
             return true;
         }
 

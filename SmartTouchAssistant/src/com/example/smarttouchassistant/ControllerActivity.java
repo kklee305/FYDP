@@ -2,17 +2,22 @@ package com.example.smarttouchassistant;
 
 import java.util.List;
 
+import com.example.smarttouchassistant.BluetoothConnectionService.LocalBinder;
+
 import android.app.Activity;
 import android.content.BroadcastReceiver;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.ServiceConnection;
 import android.content.pm.ActivityInfo;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.support.v4.app.NavUtils;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.view.GestureDetectorCompat;
@@ -26,7 +31,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 public class ControllerActivity extends Activity implements SensorEventListener{
-
+	
+	BluetoothConnectionService btService;
+    boolean isBound = false;
+    
 	private static final float ALPHA = 0.9f;
 	
 	private SensorManager sm = null;
@@ -46,6 +54,8 @@ public class ControllerActivity extends Activity implements SensorEventListener{
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_controller);
+		Intent intent = new Intent(this, BluetoothConnectionService.class);
+        bindService(intent, myConnection, Context.BIND_AUTO_CREATE);   
 		// Show the Up button in the action bar.
 		setupActionBar();
 		
@@ -77,7 +87,21 @@ public class ControllerActivity extends Activity implements SensorEventListener{
         x = marginLayoutParams.leftMargin;
         y = marginLayoutParams.bottomMargin;
 	}
-
+	
+	//Bind service to BT connection
+	private ServiceConnection myConnection = new ServiceConnection() {
+		public void onServiceConnected(ComponentName className, IBinder service) {
+	        LocalBinder binder = (LocalBinder) service;
+	        btService = binder.getService();
+	        isBound = true;
+	    }
+	    
+	    public void onServiceDisconnected(ComponentName arg0) {
+	        isBound = false;
+	    }    	    
+	};
+	
+	
 	/**
 	 * Set up the {@link android.app.ActionBar}.
 	 */

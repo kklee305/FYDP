@@ -1,8 +1,14 @@
 package com.example.smarttouchassistant;
 
+import com.example.smarttouchassistant.BluetoothConnectionService.LocalBinder;
+
 import android.app.Activity;
+import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.support.v4.app.NavUtils;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -10,10 +16,17 @@ import android.widget.TextView;
 
 public class MacroControllerActivity extends Activity {
 
+	BluetoothConnectionService btService;
+    boolean isBound = false;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_macro_controller);
+		Intent serviceIntent = new Intent(this, BluetoothConnectionService.class);
+        bindService(serviceIntent, myConnection, Context.BIND_AUTO_CREATE); 
+		// Show the Up button in the action bar.
+		setupActionBar();
 		
 		// Get the message from the intent
 		Intent intent = getIntent();
@@ -30,10 +43,23 @@ public class MacroControllerActivity extends Activity {
 
 	    // Set the text view as the activity layout
 	    setContentView(textView);
-		// Show the Up button in the action bar.
-		setupActionBar();
+
 	}
 
+	
+	//Bind service to BT connection
+	private ServiceConnection myConnection = new ServiceConnection() {
+		public void onServiceConnected(ComponentName className, IBinder service) {
+	        LocalBinder binder = (LocalBinder) service;
+	        btService = binder.getService();
+	        isBound = true;
+	    }
+	    
+	    public void onServiceDisconnected(ComponentName arg0) {
+	        isBound = false;
+	    }    	    
+	};
+	
 	/**
 	 * Set up the {@link android.app.ActionBar}.
 	 */

@@ -1,11 +1,16 @@
 package com.example.smarttouchassistant;
 
+import com.example.smarttouchassistant.BluetoothConnectionService.LocalBinder;
+
 import android.os.Bundle;
+import android.os.IBinder;
 import android.app.Activity;
 import android.content.BroadcastReceiver;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.ServiceConnection;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -16,10 +21,15 @@ import android.support.v4.content.LocalBroadcastManager;
 
 public class MultiMediaActivity extends Activity {
 
+	BluetoothConnectionService btService;
+    boolean isBound = false;
+    
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_multi_media);
+		Intent intent = new Intent(this, BluetoothConnectionService.class);
+        bindService(intent, myConnection, Context.BIND_AUTO_CREATE); 
 		// Show the Up button in the action bar.
 		setupActionBar();
 		
@@ -27,6 +37,19 @@ public class MultiMediaActivity extends Activity {
 	            mMessageReceiver, new IntentFilter("foregroundSwitch"));
 	}
 
+	//Bind service to BT connection
+	private ServiceConnection myConnection = new ServiceConnection() {
+		public void onServiceConnected(ComponentName className, IBinder service) {
+	        LocalBinder binder = (LocalBinder) service;
+	        btService = binder.getService();
+	        isBound = true;
+	    }
+	    
+	    public void onServiceDisconnected(ComponentName arg0) {
+	        isBound = false;
+	    }    	    
+	};
+	
 	private BroadcastReceiver mMessageReceiver = new BroadcastReceiver() {
 	    @Override
 	    public void onReceive(Context context, Intent intent) {
