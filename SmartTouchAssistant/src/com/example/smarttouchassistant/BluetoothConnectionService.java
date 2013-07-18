@@ -201,7 +201,7 @@ public class BluetoothConnectionService extends Service{
 	                // Read from the InputStream
 	                bytes = mmInStream.read(buffer);
 	                // Send the obtained bytes to the UI activity
-	                Log.d(DEBUG_TAG, "Received: " + buffer.toString());
+	                Log.d(DEBUG_TAG, "Received: " + new String(buffer));
 	            } catch (IOException e) {
 	                break;
 	            }
@@ -211,7 +211,10 @@ public class BluetoothConnectionService extends Service{
 	    /* Call this from the main activity to send data to the remote device */
 	    public void write(byte[] bytes) {
 	        try {
-	        	Log.d(DEBUG_TAG, "sending " + bytes.toString());
+	        	String received = new String(bytes);
+	        	String[] input = received.split("\r");
+	        	
+	        	Log.d(DEBUG_TAG, "sending " + input[0]);
 	            mmOutStream.write(bytes);
 	        } catch (IOException e) { }
 	    }

@@ -1,31 +1,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/macroLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
   	android:orientation="vertical" >  
-	
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="shortcut1"
-        android:text="@string/shortcut1" />
-    
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="shortcut2"
-        android:text="@string/shortcut2" />
-    
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="shortcut3"
-        android:text="@string/shortcut3" />
-    
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="shortcut4"
-        android:text="@string/shortcut4" />
+
         
 </LinearLayout>

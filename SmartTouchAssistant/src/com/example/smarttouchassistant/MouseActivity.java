@@ -23,7 +23,7 @@ import android.view.MotionEvent;
 import android.widget.TextView;
 
 public class MouseActivity extends Activity{
-	
+	private static final String MOUSE_HEADER = "mouse#";
 	private TextView textview5, textScrollx, textScrolly;	
 	private GestureDetectorCompat mDetector;
 	BluetoothConnectionService btService;
@@ -147,14 +147,14 @@ public class MouseActivity extends Activity{
         @Override
         public boolean onDoubleTap(MotionEvent e) {
         	textview5.setText("Double Click");
-        	btService.sendMessage("Double Click");
+        	btService.sendMessage(MOUSE_HEADER + "DoubleClick");
             return true;
         }
         
         @Override
-        public boolean onSingleTapUp(MotionEvent e) {
+        public boolean onSingleTapConfirmed(MotionEvent e) {
         	textview5.setText("Single Click");
-        	btService.sendMessage("Single Click");
+        	btService.sendMessage(MOUSE_HEADER + "SingleClick");
             return true;
         }        
 
@@ -163,8 +163,7 @@ public class MouseActivity extends Activity{
         public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
         	textScrollx.setText("x: "+ String.valueOf(distanceX));
         	textScrolly.setText("y: "+ String.valueOf(distanceY));
-        	btService.sendMessage(String.valueOf(distanceX));
-        	btService.sendMessage(String.valueOf(distanceY));
+        	btService.sendMessage(MOUSE_HEADER + "x"+String.valueOf(distanceX) + "#y" + String.valueOf(distanceY));
             return true;
         }
 

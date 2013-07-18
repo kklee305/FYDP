@@ -31,7 +31,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 public class ControllerActivity extends Activity implements SensorEventListener{
-	
+	private static final String CONTROLLER_HEADER = "controller#";
 	BluetoothConnectionService btService;
     boolean isBound = false;
     

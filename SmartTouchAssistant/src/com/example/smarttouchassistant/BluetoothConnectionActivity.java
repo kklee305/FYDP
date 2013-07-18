@@ -38,9 +38,15 @@ public class BluetoothConnectionActivity extends Activity {
 	    }    	    
 	};
 	   
-	public void start(View view) {
+	public void startLeon(View view) {
 		Intent intent = new Intent(this, DisplayOptionsActivity.class);    	
     	btService.connectToDevice("LEONZHANG-MSI", "40:61:86:42:38:14");
+		startActivity(intent);
+	}
+	
+	public void startChris(View view) {
+		Intent intent = new Intent(this, DisplayOptionsActivity.class);    	
+    	btService.connectToDevice("CHRIS-PC", "00:26:83:14:69:43");
 		startActivity(intent);
 	}
  

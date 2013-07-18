@@ -1,7 +1,5 @@
 package com.example.smarttouchassistant;
 
-import com.example.smarttouchassistant.BluetoothConnectionService.LocalBinder;
-
 import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Context;
@@ -12,10 +10,16 @@ import android.os.IBinder;
 import android.support.v4.app.NavUtils;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.TextView;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.LinearLayout.LayoutParams;
+
+import com.example.smarttouchassistant.BluetoothConnectionService.LocalBinder;
 
 public class MacroControllerActivity extends Activity {
-
+	private static final String MACRO_HEADER = "macro#";
 	BluetoothConnectionService btService;
     boolean isBound = false;
 	
@@ -23,6 +27,7 @@ public class MacroControllerActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_macro_controller);
+		
 		Intent serviceIntent = new Intent(this, BluetoothConnectionService.class);
         bindService(serviceIntent, myConnection, Context.BIND_AUTO_CREATE); 
 		// Show the Up button in the action bar.
@@ -30,20 +35,30 @@ public class MacroControllerActivity extends Activity {
 		
 		// Get the message from the intent
 		Intent intent = getIntent();
-		StringBuilder sb = new StringBuilder();
+		LinearLayout layout = (LinearLayout) findViewById(R.id.macroLayout);
+		
+		int buttonYPosition = 0;
 		for(String s: MacroActivity.SHORTCUTS) {
-			sb.append(intent.getStringExtra(s));
+			final String message = intent.getStringExtra(s);
+			Button b = new Button(this);
+					
+			b.setOnClickListener(new OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					btService.sendMessage(MACRO_HEADER + message);
+				}
+
+
+			});
+
+			b.setText(message);
+			b.setWidth(400);
+			b.setHeight(40);
+			b.setX(0);
+			b.setY(buttonYPosition);
+			layout.addView(b);
+			buttonYPosition += 50;
 		}
-	    String message = sb.toString();
-
-	    // Create the text view
-	    TextView textView = new TextView(this);
-	    textView.setTextSize(40);
-	    textView.setText(message);
-
-	    // Set the text view as the activity layout
-	    setContentView(textView);
-
 	}
 
 	

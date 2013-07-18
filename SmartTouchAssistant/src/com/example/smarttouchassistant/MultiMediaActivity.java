@@ -20,7 +20,7 @@ import android.support.v4.app.NavUtils;
 import android.support.v4.content.LocalBroadcastManager;
 
 public class MultiMediaActivity extends Activity {
-
+	private static final String MULTIMEDIA_HEADER = "multimedia#";
 	BluetoothConnectionService btService;
     boolean isBound = false;
     
@@ -83,23 +83,23 @@ public class MultiMediaActivity extends Activity {
 	}
 	
 	public void inputCommand(View view) {
-		Context context = getApplicationContext();
-		CharSequence text = "";
-		int duration = Toast.LENGTH_SHORT;
+		String message = null;
+
     	switch (view.getId()) {
-	    	case R.id.rewind: text = "Rewind";
+	    	case R.id.rewind: message = "Rewind";
 	    					break;
-	    	case R.id.play: text = "Play/Pause";
+	    	case R.id.play: message = "Play/Pause";
 	    					break;
-	    	case R.id.forward: text = "Forward";
+	    	case R.id.forward: message = "Forward";
 							break;
-	    	case R.id.volumeUp: text = "+";
+	    	case R.id.volumeUp: message = "volUp";
 							break;
-	    	case R.id.volumeDown: text = "-";
+	    	case R.id.volumeDown: message = "volDown";
 							break;
     	}	
-		Toast toast = Toast.makeText(context, text, duration);
-		toast.show();    	
+    	
+    	btService.sendMessage(MULTIMEDIA_HEADER + message);
+	
     }
 
 	@Override

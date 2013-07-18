@@ -19,7 +19,7 @@ import android.view.View;
 import com.example.smarttouchassistant.BluetoothConnectionService.LocalBinder;
 
 public class NumpadActivity extends Activity {
-
+	private static final String NUMPAD_HEADER = "numpad#";
     BluetoothConnectionService btService;
     boolean isBound = false;
     
@@ -124,7 +124,7 @@ public class NumpadActivity extends Activity {
 	    		Log.d("DEBUG", "9 tapped");
 				break;
     	}	
-    	btService.sendMessage(message);		 	
+    	btService.sendMessage(NUMPAD_HEADER + message);		 	
     }
 	
 	@Override
