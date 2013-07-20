@@ -34,6 +34,12 @@
     <string name="tap8">8</string>
     <string name="tap9">9</string>
     <string name="tap0">0</string>
+    <string name="tapDivide">/</string>
+    <string name="tapMultiply">*</string>
+    <string name="tapMinus">-</string>
+    <string name="tapAdd">+</string>
+    <string name="tapDot">.</string>    
+    <string name="tapClear">CLR</string>
     <string name="title_activity_multi_media">MultiMediaActivity</string>
     <string name="multiMediaOption">Use as multimedia controller</string>
     <string name="volumeUp">+</string>

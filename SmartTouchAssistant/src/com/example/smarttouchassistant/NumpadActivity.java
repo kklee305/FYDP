@@ -123,6 +123,30 @@ public class NumpadActivity extends Activity {
 	    		message = "9";
 	    		Log.d("DEBUG", "9 tapped");
 				break;
+	    	case R.id.tapAdd: 
+	    		message = "+";
+	    		Log.d("DEBUG", "+ tapped");
+				break;
+	    	case R.id.tapMinus: 
+	    		message = "-";
+	    		Log.d("DEBUG", "- tapped");
+				break;
+	    	case R.id.tapMultiply: 
+	    		message = "*";
+	    		Log.d("DEBUG", "* tapped");
+				break;
+	    	case R.id.tapDivide: 
+	    		message = "/";
+	    		Log.d("DEBUG", "/ tapped");
+				break;
+	    	case R.id.tapDot: 
+	    		message = ".";
+	    		Log.d("DEBUG", ". tapped");
+				break;
+	    	case R.id.tapClear: 
+	    		message = "esc";
+	    		Log.d("DEBUG", "CLEAR tapped");
+				break;
     	}	
     	btService.sendMessage(NUMPAD_HEADER + message);		 	
     }

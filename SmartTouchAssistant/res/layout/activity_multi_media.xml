@@ -2,7 +2,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-  	android:orientation="vertical" >  
+  	android:orientation="vertical" 
+  	android:background="#090202">  
 	<LinearLayout
     	android:layout_width="match_parent"
     	android:layout_height="60dp"
@@ -11,6 +12,8 @@
    	 	<Button android:id="@+id/rewind"
 	        android:layout_weight="0.5"
             android:layout_width="0dp"
+            android:background="#787474"
+            android:layout_marginLeft="3dip"
 	        android:layout_height="match_parent"
 	        android:onClick="inputCommand"
 	        android:text="@string/rewind" />
@@ -18,6 +21,8 @@
         <Button android:id="@+id/play"
 	        android:layout_weight="0.5"
       		android:layout_width="0dp"
+      		android:background="#787474"
+      		android:layout_marginLeft="3dip"
 	        android:layout_height="match_parent"
 	        android:onClick="inputCommand"
 	        android:text="@string/play" />
@@ -25,6 +30,9 @@
         <Button android:id="@+id/forward"
 	        android:layout_weight="0.5"
        		android:layout_width="0dp"
+       		android:background="#787474"
+       		android:layout_marginLeft="3dip"
+       		android:layout_marginRight="3dip"
 	        android:layout_height="match_parent"
 	        android:onClick="inputCommand"
 	        android:text="@string/forward" />
@@ -33,11 +41,15 @@
 	<LinearLayout
     	android:layout_width="match_parent"
     	android:layout_height="60dp"
-  		android:orientation="horizontal" > 
+  		android:orientation="horizontal" 
+  		android:layout_marginTop="3dip"> 
 
    	 	<Button android:id="@+id/volumeDown"
 	        android:layout_weight="0.5"
             android:layout_width="0dp"
+            android:background="#787474"
+            android:layout_marginLeft="3dip"
+            android:layout_marginRight="3dip"
 	        android:layout_height="match_parent"
 	        android:onClick="inputCommand"
 	        android:text="@string/volumeDown" />
@@ -45,6 +57,8 @@
         <Button android:id="@+id/volumeUp"
 	        android:layout_weight="0.5"
       		android:layout_width="0dp"
+      		android:background="#787474"
+      		android:layout_marginRight="3dip"
 	        android:layout_height="match_parent"
 	        android:onClick="inputCommand"
 	        android:text="@string/volumeUp" />  

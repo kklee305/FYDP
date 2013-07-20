@@ -2,32 +2,42 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-  	android:orientation="vertical" >  
+  	android:orientation="vertical" 
+  	android:background="#090202">  
 	  
 	<EditText android:id="@+id/shortcut1"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/shortcut_selection" />
+        android:hint="@string/shortcut_selection" 
+        android:textColor="#ffffff"/>
 	
 	<EditText android:id="@+id/shortcut2"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/shortcut_selection" />
+        android:hint="@string/shortcut_selection" 
+        android:textColor="#ffffff"/>
 	
 	<EditText android:id="@+id/shortcut3"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/shortcut_selection" />
+        android:hint="@string/shortcut_selection" 
+        android:textColor="#ffffff"/>
 	
 	<EditText android:id="@+id/shortcut4"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/shortcut_selection" />
+        android:hint="@string/shortcut_selection" 
+        android:textColor="#ffffff"/>
 	
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="confirmMacros"
+        android:background="#787474"
+        android:layout_marginTop="3dip"
+        android:layout_marginBottom="3dip"
+        android:layout_marginLeft="3dip"
+        android:layout_marginRight="3dip"
         android:text="@string/confirm_selection" />
         
 </LinearLayout>

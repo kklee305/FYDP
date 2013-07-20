@@ -200,8 +200,15 @@ public class BluetoothConnectionService extends Service{
 	        	try {
 	                // Read from the InputStream
 	                bytes = mmInStream.read(buffer);
+	                String received = new String(buffer);
 	                // Send the obtained bytes to the UI activity
-	                Log.d(DEBUG_TAG, "Received: " + new String(buffer));
+	                Log.d(DEBUG_TAG, "Received: " + received);
+	                Context context = getApplicationContext();
+	                CharSequence text = "Received from PC: " + received;
+	                int duration = Toast.LENGTH_SHORT;
+
+	                Toast toast = Toast.makeText(context, text, duration);
+	                toast.show();
 	            } catch (IOException e) {
 	                break;
 	            }

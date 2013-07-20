@@ -163,7 +163,7 @@ public class MouseActivity extends Activity{
         public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
         	textScrollx.setText("x: "+ String.valueOf(distanceX));
         	textScrolly.setText("y: "+ String.valueOf(distanceY));
-        	btService.sendMessage(MOUSE_HEADER + "x"+String.valueOf(distanceX) + "#y" + String.valueOf(distanceY));
+        	btService.sendMessage(MOUSE_HEADER + String.valueOf(distanceX) + "/" + String.valueOf(distanceY));
             return true;
         }
 
