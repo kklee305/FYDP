@@ -2,18 +2,29 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-  	android:orientation="vertical" >  
+  	android:orientation="vertical"
+  	android:background="#090202" >  
 
     <Button
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:text="@string/startLeon"
+        android:layout_marginTop="3dip"
+        android:layout_marginBottom="3dip"
+        android:layout_marginLeft="3dip"
+        android:layout_marginRight="3dip"
+        android:background="@drawable/button_selector"
         android:onClick="startLeon" />    
         
     <Button
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:text="@string/startChris"
+        android:layout_marginTop="3dip"
+        android:layout_marginBottom="3dip"
+        android:layout_marginLeft="3dip"
+        android:layout_marginRight="3dip"
+        android:background="@drawable/button_selector"
         android:onClick="startChris" />  
 
 </LinearLayout>

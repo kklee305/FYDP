@@ -86,16 +86,27 @@ public class MultiMediaActivity extends Activity {
 		String message = null;
 
     	switch (view.getId()) {
-	    	case R.id.rewind: message = "Rewind";
-	    					break;
-	    	case R.id.play: message = "Play/Pause";
-	    					break;
-	    	case R.id.forward: message = "Forward";
-							break;
-	    	case R.id.volumeUp: message = "volUp";
-							break;
-	    	case R.id.volumeDown: message = "volDown";
-							break;
+	    	case R.id.rewind: 
+	    		message = "previoustrack";
+	    		break;
+	    	case R.id.play: 
+	    		message = "playpause";
+	    		break;
+	    	case R.id.forward: 
+	    		message = "nexttrack";
+				break;
+	    	case R.id.volumeUp: 
+	    		message = "volumeup";
+				break;
+	    	case R.id.volumeDown: 
+	    		message = "volumedown";
+				break;
+	    	case R.id.stop:
+	    		message = "stop";
+	    		break;
+	    	case R.id.mute: 
+	    		message = "mute";
+	    		break;
     	}	
     	
     	btService.sendMessage(MULTIMEDIA_HEADER + message);

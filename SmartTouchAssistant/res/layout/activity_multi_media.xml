@@ -9,33 +9,49 @@
     	android:layout_height="60dp"
   		android:orientation="horizontal" > 
 
-   	 	<Button android:id="@+id/rewind"
-	        android:layout_weight="0.5"
+   	 	<ImageButton android:id="@+id/rewind"
+	        android:layout_weight="0.25"
             android:layout_width="0dp"
-            android:background="#787474"
+            android:background="@drawable/button_selector"
+            android:src="@drawable/rewind_icon"
             android:layout_marginLeft="3dip"
 	        android:layout_height="match_parent"
 	        android:onClick="inputCommand"
 	        android:text="@string/rewind" />
         
-        <Button android:id="@+id/play"
-	        android:layout_weight="0.5"
+        <ImageButton android:id="@+id/play"
+	        android:layout_weight="0.25"
       		android:layout_width="0dp"
-      		android:background="#787474"
+      		android:background="@drawable/button_selector"
+      		android:src="@drawable/play_pause_icon"
       		android:layout_marginLeft="3dip"
 	        android:layout_height="match_parent"
 	        android:onClick="inputCommand"
 	        android:text="@string/play" />
         
-        <Button android:id="@+id/forward"
-	        android:layout_weight="0.5"
+        <ImageButton android:id="@+id/stop"
+	        android:layout_weight="0.25"
        		android:layout_width="0dp"
-       		android:background="#787474"
+       		android:background="@drawable/button_selector"
+       		android:src="@drawable/playback_stop_icon"
        		android:layout_marginLeft="3dip"
        		android:layout_marginRight="3dip"
 	        android:layout_height="match_parent"
 	        android:onClick="inputCommand"
+	        android:text="@string/stop" />
+        
+        <ImageButton android:id="@+id/forward"
+	        android:layout_weight="0.25"
+       		android:layout_width="0dp"
+       		android:background="@drawable/button_selector"
+       		android:src="@drawable/fast_forward_icon"
+       		android:layout_marginLeft="0dip"
+       		android:layout_marginRight="3dip"
+	        android:layout_height="match_parent"
+	        android:onClick="inputCommand"
 	        android:text="@string/forward" />
+        
+         
     </LinearLayout>  
     
 	<LinearLayout
@@ -44,24 +60,36 @@
   		android:orientation="horizontal" 
   		android:layout_marginTop="3dip"> 
 
-   	 	<Button android:id="@+id/volumeDown"
+   	 	<ImageButton android:id="@+id/volumeDown"
 	        android:layout_weight="0.5"
             android:layout_width="0dp"
-            android:background="#787474"
+            android:background="@drawable/button_selector"
             android:layout_marginLeft="3dip"
             android:layout_marginRight="3dip"
+            android:src="@drawable/vol_down_icon"
 	        android:layout_height="match_parent"
 	        android:onClick="inputCommand"
 	        android:text="@string/volumeDown" />
         
-        <Button android:id="@+id/volumeUp"
+        <ImageButton android:id="@+id/volumeUp"
 	        android:layout_weight="0.5"
       		android:layout_width="0dp"
-      		android:background="#787474"
+      		android:background="@drawable/button_selector"
+      		android:src="@drawable/vol_up_icon"
       		android:layout_marginRight="3dip"
 	        android:layout_height="match_parent"
 	        android:onClick="inputCommand"
 	        android:text="@string/volumeUp" />  
+	        
+         <ImageButton android:id="@+id/mute"
+	        android:layout_weight="0.5"
+      		android:layout_width="0dp"
+      		android:background="@drawable/button_selector"
+      		android:src="@drawable/sound_mute_icon"
+      		android:layout_marginRight="3dip"
+	        android:layout_height="match_parent"
+	        android:onClick="inputCommand"
+	        android:text="@string/mute" /> 
 
     </LinearLayout>  
         

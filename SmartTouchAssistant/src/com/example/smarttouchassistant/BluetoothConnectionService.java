@@ -24,7 +24,8 @@ public class BluetoothConnectionService extends Service{
 	
     private final IBinder mBinder = new LocalBinder();
     private static String inputFromPC;
-    private static String[] contextTest = {"macro", "mouse", "numpad", "multimedia", "controller"};
+    private static String[] contexts = {"macro", "mouse", "numpad", "multimedia", "controller"};
+    private static String[] foregrounds = {"WINWORD", "explorer", "calc", "wmplayer", "controller"};
     
     // Message types sent from the BluetoothChatService Handler
     public static final int MESSAGE_STATE_CHANGE = 1;
@@ -110,7 +111,7 @@ public class BluetoothConnectionService extends Service{
 	}
 	
 	protected void establishComm(BluetoothSocket mmSocket) {
-		mConnectedThread = new ConnectedThread(mmSocket);
+		mConnectedThread = new ConnectedThread(mmSocket, this);
 		mConnectedThread.start();
 		Log.d(DEBUG_TAG, "Bluetooth Connection established");
 	}
@@ -171,11 +172,13 @@ public class BluetoothConnectionService extends Service{
 	    private final BluetoothSocket mmSocket;
 	    private final InputStream mmInStream;
 	    private final OutputStream mmOutStream;
+	    private final Context context;
 	 
-	    public ConnectedThread(BluetoothSocket socket) {
+	    public ConnectedThread(BluetoothSocket socket, Context origContext) {
 	        mmSocket = socket;
 	        InputStream tmpIn = null;
 	        OutputStream tmpOut = null;
+	        context = origContext;
 
 	 
 	        // Get the input and output streams, using temp objects because
@@ -200,15 +203,19 @@ public class BluetoothConnectionService extends Service{
 	        	try {
 	                // Read from the InputStream
 	                bytes = mmInStream.read(buffer);
-	                String received = new String(buffer);
+	                String received = new String(buffer, 0, bytes, "UTF-8");
 	                // Send the obtained bytes to the UI activity
-	                Log.d(DEBUG_TAG, "Received: " + received);
-	                Context context = getApplicationContext();
-	                CharSequence text = "Received from PC: " + received;
-	                int duration = Toast.LENGTH_SHORT;
-
-	                Toast toast = Toast.makeText(context, text, duration);
-	                toast.show();
+	                Log.d(DEBUG_TAG, "Received: " + received);    
+	                
+	                for(int i = 0; i < foregrounds.length; i++) {
+	                	if(received.contains(foregrounds[i])) {
+	                		Intent intent = new Intent("foregroundSwitch");	 
+	                		intent.putExtra("foreground", contexts[i]); 	
+	    					Log.d(DEBUG_TAG, "sent foreground switch to " + contexts[i]);
+	    		            LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
+	    		            break;
+	                	}	                	                		
+	                }		        			            
 	            } catch (IOException e) {
 	                break;
 	            }
@@ -248,7 +255,7 @@ public class BluetoothConnectionService extends Service{
 	        	Intent intent = new Intent("foregroundSwitch");
 	
 	        	
-	        	intent.putExtra("foreground", contextTest[i]);
+	        	intent.putExtra("foreground", contexts[i]);
 	        	
 				try {
 					sleep(5000);
@@ -257,7 +264,7 @@ public class BluetoothConnectionService extends Service{
 					e.printStackTrace();
 				}
 	        
-				Log.d(DEBUG_TAG, "sent foreground switch to " +contextTest[i]);
+				Log.d(DEBUG_TAG, "sent foreground switch to " +contexts[i]);
 	            LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
 	            i++;
 	        	if(i == 5) {
