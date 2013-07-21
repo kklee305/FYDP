@@ -8,13 +8,13 @@ import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.support.v4.app.NavUtils;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.LinearLayout.LayoutParams;
 
 import com.example.smarttouchassistant.BluetoothConnectionService.LocalBinder;
 
@@ -39,7 +39,9 @@ public class MacroControllerActivity extends Activity {
 		
 		int buttonYPosition = 0;
 		for(String s: MacroActivity.SHORTCUTS) {
-			final String message = intent.getStringExtra(s);
+			String intentMessage = intent.getStringExtra(s);
+			final String message = intentMessage.replaceAll("[+]", "&");
+			Log.d("DEBUG", "replaced " + intentMessage + " with " + message);
 			Button b = new Button(this);
 					
 			b.setOnClickListener(new OnClickListener() {
@@ -51,7 +53,7 @@ public class MacroControllerActivity extends Activity {
 
 			});
 
-			b.setText(message);
+			b.setText(intentMessage);
 			b.setWidth(400);
 			b.setHeight(40);
 			b.setX(0);

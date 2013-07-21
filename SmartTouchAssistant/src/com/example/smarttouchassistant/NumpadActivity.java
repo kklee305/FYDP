@@ -143,9 +143,9 @@ public class NumpadActivity extends Activity {
 	    		message = ".";
 	    		Log.d("DEBUG", ". tapped");
 				break;
-	    	case R.id.tapClear: 
-	    		message = "esc";
-	    		Log.d("DEBUG", "CLEAR tapped");
+	    	case R.id.tapEnter: 
+	    		message = "enter";
+	    		Log.d("DEBUG", "Enter tapped");
 				break;
     	}	
     	btService.sendMessage(NUMPAD_HEADER + message);		 	

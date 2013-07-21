@@ -1,222 +1,259 @@
-<TableLayout
-	xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:shrinkColumns="*"  
-    android:stretchColumns="*" 
-    android:background="#090202">
+    android:orientation="horizontal" 
+    android:background="#090202"
+    android:weightSum="5"
+    android:baselineAligned="false">	
     
-    <TableRow
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" 
-        android:layout_marginTop="2dip"
-        android:layout_marginBottom="2dip"
-        android:layout_weight="1">
-        
-        <Button android:id="@+id/tapDivide"
-            style="?android:attr/buttonBarButtonStyle"
-            android:background="#787474"
-            android:layout_marginLeft="2dip"
-            android:layout_marginRight="2dip"
-	        android:layout_width="wrap_content"
-	        android:layout_height="fill_parent"
-	        android:onClick="inputNumber"
-	        android:text="@string/tapDivide" />
-        
-        <Button android:id="@+id/tapMultiply"
-            style="?android:attr/buttonBarButtonStyle"
-            android:background="#787474"
-            android:layout_marginLeft="2dip"
-            android:layout_marginRight="2dip"
-	        android:layout_width="wrap_content"
-	        android:layout_height="fill_parent"
-	        android:onClick="inputNumber"
-	        android:text="@string/tapMultiply" />
-        
-        <Button android:id="@+id/tapMinus"
-            style="?android:attr/buttonBarButtonStyle"
-            android:background="#787474"
-            android:layout_marginLeft="2dip"
-            android:layout_marginRight="2dip"
-	        android:layout_width="wrap_content"
-	        android:layout_height="fill_parent"
-	        android:onClick="inputNumber"
-	        android:text="@string/tapMinus" />
-        
-        <Button android:id="@+id/tapAdd"
-            style="?android:attr/buttonBarButtonStyle"
-            android:background="#787474"
-            android:layout_marginLeft="2dip"
-            android:layout_marginRight="2dip"
-	        android:layout_width="wrap_content"
-	        android:layout_height="fill_parent"
-	        android:onClick="inputNumber"
-	        android:text="@string/tapAdd" />
-    </TableRow>
-    
-    <TableRow
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="2dip"
-        android:layout_marginBottom="2dip"
-        android:layout_weight="1">
-        
-        <Button android:id="@+id/tap7"
-            style="?android:attr/buttonBarButtonStyle"
-            android:background="#787474"
-            android:layout_marginLeft="2dip"
-            android:layout_marginRight="2dip"
-            android:layout_weight="1"
-	        android:layout_width="wrap_content"
-	        android:layout_height="fill_parent"
-	        android:onClick="inputNumber"
-	        android:text="@string/tap7" />
-        
-        <Button android:id="@+id/tap8"
-            style="?android:attr/buttonBarButtonStyle"
-            android:background="#787474"
-            android:layout_marginLeft="2dip"
-            android:layout_marginRight="2dip"
-            android:layout_weight="1"
-	        android:layout_width="wrap_content"
-	        android:layout_height="fill_parent"
-	        android:onClick="inputNumber"
-	        android:text="@string/tap8" />
-        
-        <Button android:id="@+id/tap9"
-            style="?android:attr/buttonBarButtonStyle"
-            android:background="#787474"
-            android:layout_marginLeft="2dip"
-            android:layout_marginRight="2dip"
-            android:layout_weight="1"
-	        android:layout_width="wrap_content"
-	        android:layout_height="fill_parent"
-	        android:onClick="inputNumber"
-	        android:text="@string/tap9" />
-    </TableRow>
-    
-    <TableRow
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="2dip"
-        android:layout_marginBottom="2dip"
-        android:layout_weight="1">
-        
-        <Button android:id="@+id/tap4"
-            style="?android:attr/buttonBarButtonStyle"
-            android:background="#787474"
-            android:layout_marginLeft="2dip"
-            android:layout_marginRight="2dip"
-            android:layout_weight="1"
-	        android:layout_width="wrap_content"
-	        android:layout_height="fill_parent"
-	        android:onClick="inputNumber"
-	        android:text="@string/tap4" />
-        
-        <Button android:id="@+id/tap5"
-            style="?android:attr/buttonBarButtonStyle"
-            android:background="#787474"
-            android:layout_marginLeft="2dip"
-            android:layout_marginRight="2dip"
-            android:layout_weight="1"
-	        android:layout_width="wrap_content"
-	        android:layout_height="fill_parent"
-	        android:onClick="inputNumber"
-	        android:text="@string/tap5" />
-        
-        <Button android:id="@+id/tap6"
-            style="?android:attr/buttonBarButtonStyle"
-            android:background="#787474"
-            android:layout_marginLeft="2dip"
-            android:layout_marginRight="2dip"
-            android:layout_weight="1"
-	        android:layout_width="wrap_content"
-	        android:layout_height="fill_parent"
-	        android:onClick="inputNumber"
-	        android:text="@string/tap6" />
-    </TableRow>
-
-    <TableRow
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="2dip"
-        android:layout_marginBottom="2dip"
-        android:layout_weight="1">
-        
-        <Button android:id="@+id/tap1"
-            style="?android:attr/buttonBarButtonStyle"
-            android:background="#787474"
-            android:layout_marginLeft="2dip"
-            android:layout_marginRight="2dip"
-            android:layout_weight="1"
-	        android:layout_width="wrap_content"
-	        android:layout_height="fill_parent"
-	        android:onClick="inputNumber"
-	        android:text="@string/tap1" />
-        
-        <Button android:id="@+id/tap2"
-            style="?android:attr/buttonBarButtonStyle"
-            android:background="#787474"
-            android:layout_marginLeft="2dip"
-            android:layout_marginRight="2dip"
-            android:layout_weight="1"
-	        android:layout_width="wrap_content"
-	        android:layout_height="fill_parent"
-	        android:onClick="inputNumber"
-	        android:text="@string/tap2" />
-        
-        <Button android:id="@+id/tap3"    
-            style="?android:attr/buttonBarButtonStyle"
-            android:background="#787474"     
-            android:layout_marginLeft="2dip"
-            android:layout_marginRight="2dip"   
-            android:layout_weight="1"
-	        android:layout_width="wrap_content"
-	        android:layout_height="fill_parent"
-	        android:onClick="inputNumber"
-	        android:text="@string/tap3" />
-    </TableRow>
-        
-    <TableRow
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="2dip"
-        android:layout_marginBottom="2dip"
-        android:layout_weight="1">
-        
-        <Button android:id="@+id/tap0"
-            style="?android:attr/buttonBarButtonStyle"
-            android:background="#787474"
-            android:layout_marginLeft="2dip"
-            android:layout_marginRight="2dip"
-            android:layout_weight="1"
-	        android:layout_width="wrap_content"
-	        android:layout_height="fill_parent"
-	        android:onClick="inputNumber"
-	        android:text="@string/tap0" />
-        
-        <Button android:id="@+id/tapDot"
-            style="?android:attr/buttonBarButtonStyle"
-            android:background="#787474"
-            android:layout_marginLeft="2dip"
-            android:layout_marginRight="2dip"
-            android:layout_weight="1"
-	        android:layout_width="wrap_content"
-	        android:layout_height="fill_parent"
-	        android:onClick="inputNumber"
-	        android:text="@string/tapDot" />
-        
-        <Button android:id="@+id/tapClear"
-            style="?android:attr/buttonBarButtonStyle"
-            android:background="#787474"
-            android:layout_marginLeft="2dip"
-            android:layout_marginRight="2dip"
-            android:layout_weight="1"
-	        android:layout_width="wrap_content"
-	        android:layout_height="fill_parent"
-	        android:onClick="inputNumber"
-	        android:text="@string/tapClear" />
-    </TableRow>
-                                                  
-                       
- </TableLayout>
+	<TableLayout
+	    android:id="@+id/table"
+	    android:layout_weight="4"
+	    android:layout_width="0dp"
+	    android:layout_height="fill_parent"
+	    android:shrinkColumns="*"
+	    android:stretchColumns="*" >
+	    
+	    <TableRow
+	        android:layout_width="0dp"
+	        android:layout_height="wrap_content" 
+	        android:layout_marginTop="2dip"
+	        android:layout_marginBottom="2dip"
+	        android:layout_weight="1">
+	        
+	        <Button android:id="@+id/tapNumlock"
+	            style="?android:attr/buttonBarButtonStyle"
+	            android:background="#787474"
+	            android:layout_marginLeft="2dip"
+	            android:layout_marginRight="2dip"
+		        android:layout_width="0dp"
+		        android:layout_height="fill_parent"
+		        android:onClick="inputNumber"
+		        android:text="@string/tapNumlock" />
+	        
+	        <Button android:id="@+id/tapDivide"
+	            style="?android:attr/buttonBarButtonStyle"
+	            android:background="#787474"
+	            android:layout_marginLeft="2dip"
+	            android:layout_marginRight="2dip"
+		        android:layout_width="0dp"
+		        android:layout_height="fill_parent"
+		        android:onClick="inputNumber"
+		        android:text="@string/tapDivide" />
+	        
+	        <Button android:id="@+id/tapMultiply"
+	            style="?android:attr/buttonBarButtonStyle"
+	            android:background="#787474"
+	            android:layout_marginLeft="2dip"
+	            android:layout_marginRight="2dip"
+		        android:layout_width="0dp"
+		        android:layout_height="fill_parent"
+		        android:onClick="inputNumber"
+		        android:text="@string/tapMultiply" />
+	        
+	    </TableRow>
+	    
+	    <TableRow
+	        android:layout_width="0dp"
+	        android:layout_height="wrap_content"
+	        android:layout_marginTop="2dip"
+	        android:layout_marginBottom="2dip"
+	        android:layout_weight="1">
+	        
+	        <Button android:id="@+id/tap7"
+	            style="?android:attr/buttonBarButtonStyle"
+	            android:background="#787474"
+	            android:layout_marginLeft="2dip"
+	            android:layout_marginRight="2dip"
+	            android:layout_weight="1"
+		        android:layout_width="0dp"
+		        android:layout_height="fill_parent"
+		        android:onClick="inputNumber"
+		        android:text="@string/tap7" />
+	        
+	        <Button android:id="@+id/tap8"
+	            style="?android:attr/buttonBarButtonStyle"
+	            android:background="#787474"
+	            android:layout_marginLeft="2dip"
+	            android:layout_marginRight="2dip"
+	            android:layout_weight="1"
+		        android:layout_width="0dp"
+		        android:layout_height="fill_parent"
+		        android:onClick="inputNumber"
+		        android:text="@string/tap8" />
+	        
+	        <Button android:id="@+id/tap9"
+	            style="?android:attr/buttonBarButtonStyle"
+	            android:background="#787474"
+	            android:layout_marginLeft="2dip"
+	            android:layout_marginRight="2dip"
+	            android:layout_weight="1"
+		        android:layout_width="0dp"
+		        android:layout_height="fill_parent"
+		        android:onClick="inputNumber"
+		        android:text="@string/tap9" />
+	    </TableRow>
+	    
+	    <TableRow
+	        android:layout_width="0dp"
+	        android:layout_height="wrap_content"
+	        android:layout_marginTop="2dip"
+	        android:layout_marginBottom="2dip"
+	        android:layout_weight="1">
+	        
+	        <Button android:id="@+id/tap4"
+	            style="?android:attr/buttonBarButtonStyle"
+	            android:background="#787474"
+	            android:layout_marginLeft="2dip"
+	            android:layout_marginRight="2dip"
+	            android:layout_weight="1"
+		        android:layout_width="0dp"
+		        android:layout_height="fill_parent"
+		        android:onClick="inputNumber"
+		        android:text="@string/tap4" />
+	        
+	        <Button android:id="@+id/tap5"
+	            style="?android:attr/buttonBarButtonStyle"
+	            android:background="#787474"
+	            android:layout_marginLeft="2dip"
+	            android:layout_marginRight="2dip"
+	            android:layout_weight="1"
+		        android:layout_width="0dp"
+		        android:layout_height="fill_parent"
+		        android:onClick="inputNumber"
+		        android:text="@string/tap5" />
+	        
+	        <Button android:id="@+id/tap6"
+	            style="?android:attr/buttonBarButtonStyle"
+	            android:background="#787474"
+	            android:layout_marginLeft="2dip"
+	            android:layout_marginRight="2dip"
+	            android:layout_weight="1"
+		        android:layout_width="0dp"
+		        android:layout_height="fill_parent"
+		        android:onClick="inputNumber"
+		        android:text="@string/tap6" />
+	    </TableRow>
+	
+	    <TableRow
+	        android:layout_width="0dp"
+	        android:layout_height="wrap_content"
+	        android:layout_marginTop="2dip"
+	        android:layout_marginBottom="2dip"
+	        android:layout_weight="1">
+	        
+	        <Button android:id="@+id/tap1"
+	            style="?android:attr/buttonBarButtonStyle"
+	            android:background="#787474"
+	            android:layout_marginLeft="2dip"
+	            android:layout_marginRight="2dip"
+	            android:layout_weight="1"
+		        android:layout_width="0dp"
+		        android:layout_height="fill_parent"
+		        android:onClick="inputNumber"
+		        android:text="@string/tap1" />
+	        
+	        <Button android:id="@+id/tap2"
+	            style="?android:attr/buttonBarButtonStyle"
+	            android:background="#787474"
+	            android:layout_marginLeft="2dip"
+	            android:layout_marginRight="2dip"
+	            android:layout_weight="1"
+		        android:layout_width="0dp"
+		        android:layout_height="fill_parent"
+		        android:onClick="inputNumber"
+		        android:text="@string/tap2" />
+	        
+	        <Button android:id="@+id/tap3"    
+	            style="?android:attr/buttonBarButtonStyle"
+	            android:background="#787474"     
+	            android:layout_marginLeft="2dip"
+	            android:layout_marginRight="2dip"   
+	            android:layout_weight="1"
+		        android:layout_width="0dp"
+		        android:layout_height="fill_parent"
+		        android:onClick="inputNumber"
+		        android:text="@string/tap3" />
+	    </TableRow>
+	        
+	    <TableRow
+	        android:layout_width="0dp"
+	        android:layout_height="wrap_content"
+	        android:layout_marginTop="2dip"
+	        android:layout_marginBottom="2dip"
+	        android:layout_weight="1">
+	        
+	        <Button android:id="@+id/tap0"
+	            style="?android:attr/buttonBarButtonStyle"
+	            android:background="#787474"
+	            android:layout_marginLeft="2dip"
+	            android:layout_marginRight="2dip"
+	            android:layout_weight="2.02"
+		        android:layout_width="0dp"
+		        android:layout_height="fill_parent"
+		        android:onClick="inputNumber"
+		        android:text="@string/tap0" />
+	        
+	        <Button android:id="@+id/tapDot"
+	            style="?android:attr/buttonBarButtonStyle"
+	            android:background="#787474"
+	            android:layout_marginLeft="2dip"
+	            android:layout_marginRight="2dip"
+	            android:layout_weight="0.98"
+		        android:layout_width="0dp"
+		        android:layout_height="fill_parent"
+		        android:onClick="inputNumber"
+		        android:text="@string/tapDot" />
+	    </TableRow>
+	                                                  
+	                       
+	 </TableLayout>
+		 
+	<LinearLayout
+	    android:id="@+id/linear"
+	    android:layout_width="0dp"
+	    android:layout_height="fill_parent"
+	    android:layout_weight="5"
+	    android:orientation="vertical" >
+	    
+		<Button
+		    android:id="@+id/tapMinus"
+		    style="?android:attr/buttonBarButtonStyle"
+		    android:layout_width="wrap_content"
+		    android:layout_height="0dp"
+		    android:layout_marginBottom="2dip"
+		    android:layout_marginLeft="2dip"
+		    android:layout_marginTop="2dip"
+		    android:layout_weight="2.07"
+		    android:background="#787474"
+		    android:onClick="inputNumber"
+		    android:text="@string/tapMinus" />
+		
+		<Button
+		    android:id="@+id/tapAdd"
+		    style="?android:attr/buttonBarButtonStyle"
+		    android:layout_width="wrap_content"
+		    android:layout_height="0dp"
+		    android:layout_marginBottom="2dip"
+		    android:layout_marginLeft="2dip"
+		    android:layout_marginTop="2dip"
+		    android:layout_weight="1.95"
+		    android:background="#787474"
+		    android:onClick="inputNumber"
+		    android:text="@string/tapAdd" />
+		
+		<Button
+		    android:id="@+id/tapEnter"
+		    style="?android:attr/buttonBarButtonStyle"
+		    android:layout_width="wrap_content"
+		    android:layout_height="0dp"
+		    android:layout_marginBottom="2dip"
+		    android:layout_marginLeft="2dip"
+		    android:layout_marginTop="2dip"
+		    android:layout_weight="0.95"
+		    android:background="#787474"
+		    android:onClick="inputNumber"
+		    android:text="@string/tapEnter" />
+   
+    </LinearLayout>
+</LinearLayout>
