@@ -1,30 +1,24 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
   	android:orientation="vertical"
-  	android:background="#090202" >  
+  	android:background="#090202" 
+  	android:id="@+id/bluetoothSelectorLayout">  
 
     <Button
+        android:id="@+id/startBluetooth"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:text="@string/startLeon"
-        android:layout_marginTop="3dip"
+        android:text="@string/startBluetooth"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="189dp"
         android:layout_marginBottom="3dip"
         android:layout_marginLeft="3dip"
         android:layout_marginRight="3dip"
-        android:background="@drawable/button_selector"
-        android:onClick="startLeon" />    
+        android:background="@drawable/button_selector" />    
         
-    <Button
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:text="@string/startChris"
-        android:layout_marginTop="3dip"
-        android:layout_marginBottom="3dip"
-        android:layout_marginLeft="3dip"
-        android:layout_marginRight="3dip"
-        android:background="@drawable/button_selector"
-        android:onClick="startChris" />  
+    
 
-</LinearLayout>
+</RelativeLayout>

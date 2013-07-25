@@ -88,6 +88,10 @@
             android:name="com.example.smarttouchassistant.BluetoothConnectionActivity"
             android:label="@string/title_activity_bluetooth_connection" >
         </activity>
+        <activity
+            android:name="com.example.smarttouchassistant.UserSettingsActivity"
+            android:label="@string/title_activity_user_settings" >
+        </activity>
     </application>
 
 </manifest>

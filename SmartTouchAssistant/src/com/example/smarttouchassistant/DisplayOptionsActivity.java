@@ -1,17 +1,19 @@
 package com.example.smarttouchassistant;
 
 import android.app.Activity;
-import android.bluetooth.BluetoothAdapter;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.NavUtils;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.TextView;
 import android.widget.Toast;
 
 public class DisplayOptionsActivity extends Activity {
-
+	private static final int RESULT_SETTINGS = 1;
     
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +47,14 @@ public class DisplayOptionsActivity extends Activity {
     	Intent intent = new Intent(this, MultiMediaActivity.class);
     	startActivity(intent);
     }
-
+	
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.settings, menu);
+		return true;
+	}
+	
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
@@ -59,8 +68,35 @@ public class DisplayOptionsActivity extends Activity {
 			//
 			NavUtils.navigateUpFromSameTask(this);
 			return true;
+		 case R.id.menu_settings:
+	            Intent i = new Intent(this, UserSettingsActivity.class);
+	            startActivityForResult(i, RESULT_SETTINGS);
+	            break;
+	 
 		}
 		return super.onOptionsItemSelected(item);
 	}
+	
+	@Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        
+        SharedPreferences sharedPrefs = PreferenceManager
+                .getDefaultSharedPreferences(this);
+        
+        switch (requestCode) {
+        case RESULT_SETTINGS:
+        	Context context = getApplicationContext();
+        	CharSequence text = "Automatic Context Switching set to: " + sharedPrefs.getBoolean("auto_switching", false);
+        	int duration = Toast.LENGTH_SHORT;
+
+        	Toast toast = Toast.makeText(context, text, duration);
+        	toast.show();
+            break; 
+        }
+ 
+    }
+		
+	
 
 }

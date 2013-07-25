@@ -13,15 +13,17 @@ import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Binder;
 import android.os.Handler;
 import android.os.IBinder;
+import android.preference.PreferenceManager;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 import android.widget.Toast;
 
 public class BluetoothConnectionService extends Service{	
-	
+	private static final String AUTO_SWITCHING_PREF = "auto_switching";
     private final IBinder mBinder = new LocalBinder();
     private static String inputFromPC;
     private static String[] contexts = {"macro", "mouse", "numpad", "multimedia", "controller"};
@@ -206,16 +208,22 @@ public class BluetoothConnectionService extends Service{
 	                String received = new String(buffer, 0, bytes, "UTF-8");
 	                // Send the obtained bytes to the UI activity
 	                Log.d(DEBUG_TAG, "Received: " + received);    
-	                
-	                for(int i = 0; i < foregrounds.length; i++) {
-	                	if(received.contains(foregrounds[i])) {
-	                		Intent intent = new Intent("foregroundSwitch");	 
-	                		intent.putExtra("foreground", contexts[i]); 	
-	    					Log.d(DEBUG_TAG, "sent foreground switch to " + contexts[i]);
-	    		            LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
-	    		            break;
-	                	}	                	                		
-	                }		        			            
+	                SharedPreferences sharedPrefs = PreferenceManager
+	                        .getDefaultSharedPreferences(context);
+	                if(sharedPrefs.getBoolean(AUTO_SWITCHING_PREF, false)) {
+	                	for(int i = 0; i < foregrounds.length; i++) {
+		                	if(received.contains(foregrounds[i])) {
+		                		Intent intent = new Intent("foregroundSwitch");	 
+		                		intent.putExtra("foreground", contexts[i]); 	
+		    					Log.d(DEBUG_TAG, "sent foreground switch to " + contexts[i]);
+		    		            LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
+		    		            break;
+		                	}	                	                		
+		                }	
+	                } else {
+	                	Log.d(DEBUG_TAG, "Auto switching off, ignored!"); 
+	                }
+	                		        			            
 	            } catch (IOException e) {
 	                break;
 	            }

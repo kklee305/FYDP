@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" 
+    android:background="@color/semitransparent">
+ 
+    <ImageView
+        android:id="@+id/bluetoothImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/bluetooth_not_turned_on_icon"
+        android:layout_marginRight="5dp" />
+ 
+    <TextView
+        android:id="@+id/bluetooth_not_on"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/bluetoothNotOn"
+        android:layout_toRightOf="@+id/bluetoothImage"
+        android:textSize="16sp"/>
+ 
+     <Button
+        android:id="@+id/bluetoothButtonOK"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:text="@string/yes"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_below="@+id/bluetoothImage"
+        />
+
+     <Button
+         android:id="@+id/bluetoothButtonNo"
+         android:layout_width="100dp"
+         android:layout_height="wrap_content"
+         android:layout_alignBaseline="@+id/bluetoothButtonOK"
+         android:layout_alignBottom="@+id/bluetoothButtonOK"
+         android:layout_toRightOf="@+id/bluetoothButtonOK"
+         android:layout_marginTop="5dp"
+         android:layout_marginRight="20dp"
+         android:text="@string/no" />
+ 
+</RelativeLayout>
