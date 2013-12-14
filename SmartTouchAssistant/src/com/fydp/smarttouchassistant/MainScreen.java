@@ -1,4 +1,4 @@
-package com.example.smarttouchassistant;
+package com.fydp.smarttouchassistant;
 
 import android.app.Activity;
 import android.app.Dialog;
@@ -18,7 +18,7 @@ public class MainScreen extends Activity {
     BluetoothConnectionService btService;
     boolean isBound = false;
     
-	public final static String EXTRA_MESSAGE = "com.example.smarttouchassistant.MESSAGE";
+	public final static String EXTRA_MESSAGE = "com.fydp.smarttouchassistant.MESSAGE";
 	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
