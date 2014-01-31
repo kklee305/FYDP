@@ -1,4 +1,4 @@
-package com.fydp.smarttouchassistant;
+package com.fydp.service;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -54,7 +54,7 @@ public class BluetoothConnectionService extends Service{
      * IPC.
      */
     public class LocalBinder extends Binder {
-    	BluetoothConnectionService getService() {
+    	public BluetoothConnectionService getService() {
             return BluetoothConnectionService.this;
         }
     }

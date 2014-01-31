@@ -16,7 +16,8 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
-import com.fydp.smarttouchassistant.BluetoothConnectionService.LocalBinder;
+import com.fydp.service.BluetoothConnectionService;
+import com.fydp.service.BluetoothConnectionService.LocalBinder;
 
 public class MacroControllerActivity extends Activity {
 	private static final String MACRO_HEADER = "macro#";

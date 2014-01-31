@@ -1,6 +1,7 @@
 package com.fydp.smarttouchassistant;
 
-import com.fydp.smarttouchassistant.BluetoothConnectionService.LocalBinder;
+import com.fydp.service.BluetoothConnectionService;
+import com.fydp.service.BluetoothConnectionService.LocalBinder;
 
 import android.os.Bundle;
 import android.os.IBinder;

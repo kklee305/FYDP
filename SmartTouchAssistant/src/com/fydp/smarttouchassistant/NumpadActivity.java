@@ -16,7 +16,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.fydp.smarttouchassistant.BluetoothConnectionService.LocalBinder;
+import com.fydp.service.BluetoothConnectionService;
+import com.fydp.service.BluetoothConnectionService.LocalBinder;
 
 public class NumpadActivity extends Activity {
 	private static final String NUMPAD_HEADER = "numpad#";

@@ -19,7 +19,8 @@ import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 
-import com.fydp.smarttouchassistant.BluetoothConnectionService.LocalBinder;
+import com.fydp.service.BluetoothConnectionService;
+import com.fydp.service.BluetoothConnectionService.LocalBinder;
 
 public class BluetoothConnectionActivity extends Activity {
 
@@ -61,16 +62,14 @@ public class BluetoothConnectionActivity extends Activity {
         selectorSpinner.setAdapter(adp);
         bluetoothSelectionLayout.addView(selectorSpinner); 
         
-        b.setOnClickListener(new View.OnClickListener() {        	              
-        	@Override
-	        public void onClick(View v) {
-        		int deviceNumber = selectorSpinner.getSelectedItemPosition();    	
-            	btService.connectToDevice(deviceNames.get(deviceNumber),deviceAddresses.get(deviceNumber));
-        		startActivity(nextActivityIntent);  
-	        }
+        b.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int deviceNumber = selectorSpinner.getSelectedItemPosition();
+                btService.connectToDevice(deviceNames.get(deviceNumber), deviceAddresses.get(deviceNumber));
+                startActivity(nextActivityIntent);
+            }
         });
-         
-      
 	}	
 	
 	private ServiceConnection myConnection = new ServiceConnection() {
