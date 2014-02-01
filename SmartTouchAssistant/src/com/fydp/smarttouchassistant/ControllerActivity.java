@@ -1,10 +1,5 @@
 package com.fydp.smarttouchassistant;
 
-import java.util.List;
-
-import com.fydp.service.BluetoothConnectionService;
-import com.fydp.service.BluetoothConnectionService.LocalBinder;
-
 import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
@@ -14,8 +9,6 @@ import android.content.IntentFilter;
 import android.content.ServiceConnection;
 import android.content.pm.ActivityInfo;
 import android.hardware.Sensor;
-import android.hardware.SensorEvent;
-import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.os.IBinder;
@@ -25,35 +18,33 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup.MarginLayoutParams;
 import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.TextView;
+import android.widget.RelativeLayout;
 
-public class ControllerActivity extends Activity implements SensorEventListener{
+import com.fydp.service.BluetoothConnectionService;
+import com.fydp.service.BluetoothConnectionService.LocalBinder;
+import com.fydp.smarttouchassistant.listeners.RotationSensorEventListener;
+
+public class ControllerActivity extends Activity {
 	private static final String CONTROLLER_HEADER = "controller#";
 	BluetoothConnectionService btService;
     boolean isBound = false;
-    
-	private static final float ALPHA = 0.9f;
 	
-	private SensorManager sm = null;
-	private float[] rotation_vector = new float[9];
-	private float[] orientation = new float[3];
-	private int[] origin_orientation = new int[3];
+	private SensorManager sensorManager;
 
 	private Button button1;
-	private TextView textview1;
-	private ImageView imageMoveMe;
+
+	private RelativeLayout controllerLayout;
 	
-	List<Sensor> rv;
-	private MarginLayoutParams marginLayoutParams;
-	private int x,y;
+	private Sensor sensor;
+	private RotationSensorEventListener listener; //Change to a base when gyro is added
+	
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_controller);
+		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 		Intent intent = new Intent(this, BluetoothConnectionService.class);
         bindService(intent, myConnection, Context.BIND_AUTO_CREATE);   
 		// Show the Up button in the action bar.
@@ -63,29 +54,23 @@ public class ControllerActivity extends Activity implements SensorEventListener{
 	            mMessageReceiver, new IntentFilter("foregroundSwitch"));
 		
 		
-        sm = (SensorManager) getSystemService(SENSOR_SERVICE);
-		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        button1 = (Button) findViewById(R.id.button1);
+        sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
+//        if (1==0) { //gyro exists
+//        	//use gyroscope
+//        } else {
+//        	//use rotation vector
+//        }
         
+        controllerLayout = (RelativeLayout) findViewById(R.id.controllerLayout);
+        sensor = sensorManager.getDefaultSensor(Sensor.TYPE_ROTATION_VECTOR);
+        listener = new RotationSensorEventListener(controllerLayout);
+        button1 = (Button) findViewById(R.id.button1);
         button1.setOnClickListener (new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-		        textview1.setText("CALIBRATE!");
-		        marginLayoutParams.leftMargin = x;
-		        marginLayoutParams.bottomMargin = y;
-	        	origin_orientation[0] = (int) (((orientation[1]*180)/Math.PI));
-	        	origin_orientation[1] = (int) (((orientation[2]*180)/Math.PI));
-	        	origin_orientation[2] = (int) (((orientation[0]*180)/Math.PI));
-		        
+				listener.calibrate();
 			};
         });
-        
-        rv = sm.getSensorList(Sensor.TYPE_ROTATION_VECTOR);
-        textview1 = (TextView) findViewById(R.id.textView1);
-        imageMoveMe = (ImageView) findViewById(R.id.imageMoveMe);
-        marginLayoutParams = (MarginLayoutParams) imageMoveMe.getLayoutParams();
-        x = marginLayoutParams.leftMargin;
-        y = marginLayoutParams.bottomMargin;
 	}
 	
 	//Bind service to BT connection
@@ -151,22 +136,18 @@ public class ControllerActivity extends Activity implements SensorEventListener{
 	@Override
 	public void onResume() {
 	    super.onResume();  // Always call the superclass method first
-    	
-    	if (rv == null || rv.size() <= 0){
-    		//error
-    	}
 
         resumeListener();
 	    Log.d("DEBUG", "Controller resumed");
 	}
 	
     private void resumeListener(){
-    	sm.registerListener(this, rv.get(0),SensorManager.SENSOR_DELAY_UI);
+    	sensorManager.registerListener(listener, sensor,SensorManager.SENSOR_DELAY_UI);
     	button1.performClick();
     }
     
     private void pauseListener(){
-    	sm.unregisterListener(this);
+    	sensorManager.unregisterListener(listener);
     }
 
 	@Override
@@ -185,53 +166,5 @@ public class ControllerActivity extends Activity implements SensorEventListener{
 		}
 		return super.onOptionsItemSelected(item);
 	}
-
-	@Override
-	public void onAccuracyChanged(Sensor arg0, int arg1) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void onSensorChanged(SensorEvent event) {
-		rotation_vector[ 0] = 1;
-		rotation_vector[ 4] = 1;
-		rotation_vector[ 8] = 1;
-		SensorManager.getRotationMatrixFromVector(rotation_vector, event.values);
-		SensorManager.getOrientation(rotation_vector, orientation);
-		updateJoyStick();		
-	}
-	
-	 public void updateJoyStick() {
-	    	
-        int x_angle =   (int) (((orientation[1]*180)/Math.PI));
-        TextView textView = (TextView) findViewById(R.id.currentPitch);
-        textView.setText("Pitch: "+ String.valueOf(x_angle));
-        textView = (TextView) findViewById(R.id.textPitch);
-        int x_diff = origin_orientation[0] - x_angle;
-        textView.setText("Pitch: "+ String.valueOf(x_diff));
-        
-        
-        int y_angle =  (int) (((orientation[2]*180)/Math.PI));
-        textView = (TextView) findViewById(R.id.currentRoll);
-        textView.setText("Roll: "+ String.valueOf(y_angle));
-        textView = (TextView) findViewById(R.id.textRoll);
-        int y_diff = origin_orientation[1] - y_angle;
-        textView.setText("Roll: "+ String.valueOf(y_diff));
-        
-        int x_offset = x_diff;        
-        int y_offset = y_diff;
-        
-    	marginLayoutParams.leftMargin = (int) (marginLayoutParams.leftMargin - y_offset);
-        marginLayoutParams.bottomMargin= (int) (marginLayoutParams.bottomMargin - x_offset);
-        imageMoveMe.requestLayout();
-        
-        int z_angle =  (int) (((orientation[0]*180)/Math.PI));
-        textView = (TextView) findViewById(R.id.currentAzimuth);
-        textView.setText("Azimuth: "+ String.valueOf(z_angle));
-        textView = (TextView) findViewById(R.id.textAzimuth);
-        textView.setText("Azimuth: "+ String.valueOf(origin_orientation[2] - z_angle));
-        return;
-    }
 
 }
