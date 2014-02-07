@@ -32,7 +32,7 @@ public class BluetoothConnectionActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_bluetooth_connection);
 		Intent intent = new Intent(this, BluetoothConnectionService.class);
-        bindService(intent, myConnection, Context.BIND_AUTO_CREATE);    
+        bindService(intent, myConnection, Context.BIND_AUTO_CREATE);
         
         final Intent nextActivityIntent = new Intent(this, DisplayOptionsActivity.class);
         
@@ -72,6 +72,12 @@ public class BluetoothConnectionActivity extends Activity {
         });
 	}	
 	
+	@Override
+	protected void onStop() {
+//		unbindService(myConnection);
+		super.onStop();
+	}
+	
 	private ServiceConnection myConnection = new ServiceConnection() {
 		public void onServiceConnected(ComponentName className, IBinder service) {
 	        LocalBinder binder = (LocalBinder) service;
@@ -102,8 +108,5 @@ public class BluetoothConnectionActivity extends Activity {
 		getMenuInflater().inflate(R.menu.bluetooth_connection, menu);
 		return true;
 	}
-	
-	
-	
 
 }

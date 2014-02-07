@@ -18,7 +18,5 @@
         android:layout_marginLeft="3dip"
         android:layout_marginRight="3dip"
         android:background="@drawable/button_selector" />    
-        
-    
 
 </RelativeLayout>
