@@ -1,154 +1,128 @@
 package com.fydp.smarttouchassistant;
 
-import android.app.Activity;
-import android.content.BroadcastReceiver;
-import android.content.ComponentName;
+import android.app.Dialog;
 import android.content.Context;
-import android.content.Intent;
-import android.content.IntentFilter;
-import android.content.ServiceConnection;
 import android.content.pm.ActivityInfo;
-import android.hardware.Sensor;
-import android.hardware.SensorManager;
 import android.os.Bundle;
-import android.os.IBinder;
 import android.support.v4.app.NavUtils;
-import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.Window;
 import android.widget.Button;
-import android.widget.RelativeLayout;
 
-import com.fydp.service.BluetoothConnectionService;
-import com.fydp.service.BluetoothConnectionService.LocalBinder;
-import com.fydp.smarttouchassistant.listeners.RotationSensorEventListener;
+import com.fydp.smarttouchassistant.listeners.ViewOnTouchListener;
 
-public class ControllerActivity extends Activity {
+public class ControllerActivity extends BaseBluetoothActivity {
 	private static final String CONTROLLER_HEADER = "controller#";
-	BluetoothConnectionService btService;
-    boolean isBound = false;
-	
-	private SensorManager sensorManager;
 
-	private Button button1;
+	public static enum ButtonType {
+		UP, DOWN, LEFT, RIGHT, X, Y, A, B
+	};
 
-	private RelativeLayout controllerLayout;
-	
-	private Sensor sensor;
-	private RotationSensorEventListener listener; //Change to a base when gyro is added
-	
-	
+	public static enum ButtonEvent {
+		PRESSED, RELEASED
+	};
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_controller);
-		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-		Intent intent = new Intent(this, BluetoothConnectionService.class);
-        bindService(intent, myConnection, Context.BIND_AUTO_CREATE);   
+		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 		// Show the Up button in the action bar.
 		setupActionBar();
+	}
+
+	@Override
+	protected void bluetoothBounded() {
+		initButtonUI();
+	}
+
+	private void initButtonUI() {
+		Button dpadUp = (Button) findViewById(R.id.dpad_up);
+		Button dpadDown = (Button) findViewById(R.id.dpad_down);
+		Button dpadLeft = (Button) findViewById(R.id.dpad_left);
+		Button dpadRight = (Button) findViewById(R.id.dpad_right);
+		Button actionA = (Button) findViewById(R.id.action_pad_a);
+		Button actionB = (Button) findViewById(R.id.action_pad_b);
+		Button actionX = (Button) findViewById(R.id.action_pad_x);
+		Button actionY = (Button) findViewById(R.id.action_pad_y);
+
+		dpadUp.setOnTouchListener(new ViewOnTouchListener(ButtonType.UP,this));
+		dpadDown.setOnTouchListener(new ViewOnTouchListener(ButtonType.DOWN,this));
+		dpadLeft.setOnTouchListener(new ViewOnTouchListener(ButtonType.LEFT,this));
+		dpadRight.setOnTouchListener(new ViewOnTouchListener(ButtonType.RIGHT,this));
+		actionA.setOnTouchListener(new ViewOnTouchListener(ButtonType.A,this));
+		actionB.setOnTouchListener(new ViewOnTouchListener(ButtonType.B,this));
+		actionX.setOnTouchListener(new ViewOnTouchListener(ButtonType.X,this));
+		actionY.setOnTouchListener(new ViewOnTouchListener(ButtonType.Y,this));
 		
-		LocalBroadcastManager.getInstance(this).registerReceiver(
-	            mMessageReceiver, new IntentFilter("foregroundSwitch"));
-		
-		
-        sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
-//        if (1==0) { //gyro exists
-//        	//use gyroscope
-//        } else {
-//        	//use rotation vector
-//        }
-        
-        controllerLayout = (RelativeLayout) findViewById(R.id.controllerLayout);
-        sensor = sensorManager.getDefaultSensor(Sensor.TYPE_ROTATION_VECTOR);
-        listener = new RotationSensorEventListener(controllerLayout);
-        button1 = (Button) findViewById(R.id.button1);
-        button1.setOnClickListener (new View.OnClickListener() {
+		Button extraButtons = (Button) findViewById(R.id.controller_extra);
+		final Context activity = this;
+		extraButtons.setOnClickListener(new OnClickListener() {
+			
 			@Override
 			public void onClick(View v) {
-				listener.calibrate();
-			};
-        });
+				final Dialog dialog = new Dialog(activity);
+				dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+				dialog.setContentView(R.layout.controller_extra_buttons);
+
+				Button startButton = (Button) dialog.findViewById(R.id.controller_start);
+				startButton.setOnClickListener(new OnClickListener() {
+					@Override
+					public void onClick(View v) {
+						dialog.dismiss();
+						sendMessage("start");
+					}
+				});
+
+				Button optionsButton = (Button) dialog.findViewById(R.id.controller_options);
+				optionsButton.setOnClickListener(new OnClickListener() {
+					@Override
+					public void onClick(View v) {
+						dialog.dismiss();
+						sendMessage("options");
+					}
+				});
+
+				dialog.show();
+				
+			}
+		});
 	}
-	
-	//Bind service to BT connection
-	private ServiceConnection myConnection = new ServiceConnection() {
-		public void onServiceConnected(ComponentName className, IBinder service) {
-	        LocalBinder binder = (LocalBinder) service;
-	        btService = binder.getService();
-	        isBound = true;
-	    }
-	    
-	    public void onServiceDisconnected(ComponentName arg0) {
-	        isBound = false;
-	    }    	    
-	};
-	
-	
+
+	public void sendMessage(String message) {
+		Log.d("Controller Messages", CONTROLLER_HEADER + message.toLowerCase());
+		btService.sendMessage(CONTROLLER_HEADER + message.toLowerCase());
+	}
+
 	/**
 	 * Set up the {@link android.app.ActionBar}.
 	 */
 	private void setupActionBar() {
-
 		getActionBar().setDisplayHomeAsUpEnabled(true);
-
 	}
-	
-	private BroadcastReceiver mMessageReceiver = new BroadcastReceiver() {
-	    @Override
-	    public void onReceive(Context context, Intent intent) {
-	        String newForeground = intent.getStringExtra("foreground");
-	        Log.d("DEBUG", this.toString() + " received foreground switch request to " + newForeground);
-	        if(!newForeground.equals("controller")) {
-	        	Intent next = null;
-		        if(newForeground.equals("mouse")) {
-		        	next = new Intent(context, MouseActivity.class);
-		        } else if(newForeground.equals("numpad")) {
-		        	next = new Intent(context, NumpadActivity.class);
-		        } else if(newForeground.equals("macro")) {
-		        	next = new Intent(context, MacroActivity.class);
-		        } else if(newForeground.equals("multimedia")) {
-		        	next = new Intent(context, MultiMediaActivity.class);
-		        }		        
-		        startActivity(next); 
-		        LocalBroadcastManager.getInstance(context).unregisterReceiver(mMessageReceiver);
-	        }	        
-	    }
-	};
-	
-	
+
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.controller, menu);
 		return true;
 	}
-	
+
 	@Override
 	public void onPause() {
-	    super.onPause();  // Always call the superclass method first
-	    pauseListener();
-	    Log.d("DEBUG", "Controller paused");
+		super.onPause(); // Always call the superclass method first
+		Log.d("DEBUG", "Controller paused");
 	}
-	
+
 	@Override
 	public void onResume() {
-	    super.onResume();  // Always call the superclass method first
-
-        resumeListener();
-	    Log.d("DEBUG", "Controller resumed");
+		super.onResume(); // Always call the superclass method first
+		Log.d("DEBUG", "Controller resumed");
 	}
-	
-    private void resumeListener(){
-    	sensorManager.registerListener(listener, sensor,SensorManager.SENSOR_DELAY_UI);
-    	button1.performClick();
-    }
-    
-    private void pauseListener(){
-    	sensorManager.unregisterListener(listener);
-    }
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {

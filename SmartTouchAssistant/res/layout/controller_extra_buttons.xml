@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/semitransparent"
+    android:orientation="horizontal"
+    android:padding="10dp" >
+
+    <Button
+        android:id="@+id/controller_start"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="50dp"
+        android:text="Start" />
+
+    <Button
+        android:id="@+id/controller_options"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:text="Options" />
+
+</LinearLayout>

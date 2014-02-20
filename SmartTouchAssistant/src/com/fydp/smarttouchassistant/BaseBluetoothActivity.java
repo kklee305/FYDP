@@ -1,8 +1,5 @@
 package com.fydp.smarttouchassistant;
 
-import com.fydp.service.BluetoothConnectionService;
-import com.fydp.service.BluetoothConnectionService.LocalBinder;
-
 import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
@@ -10,13 +7,15 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.ServiceConnection;
-import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 
-public class BaseBluetoothActivity extends Activity {
+import com.fydp.service.BluetoothConnectionService;
+import com.fydp.service.BluetoothConnectionService.LocalBinder;
+
+public abstract class BaseBluetoothActivity extends Activity {
 
 	BluetoothConnectionService btService;
 	boolean isBound = false;
@@ -30,11 +29,13 @@ public class BaseBluetoothActivity extends Activity {
 		bindService(intent, myConnection, Context.BIND_AUTO_CREATE);
 	}
 
-	protected void init() {
-		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+	private void init() {
 		LocalBroadcastManager.getInstance(this)
 				.registerReceiver(mMessageReceiver, new IntentFilter("foregroundSwitch"));
+		bluetoothBounded();
 	}
+	
+	protected abstract void bluetoothBounded();
 
 	// Bind service to BT connection
 	protected ServiceConnection myConnection = new ServiceConnection() {
@@ -51,6 +52,7 @@ public class BaseBluetoothActivity extends Activity {
 		}
 	};
 
+	//TODO rework this
 	private BroadcastReceiver mMessageReceiver = new BroadcastReceiver() {
 		@Override
 		public void onReceive(Context context, Intent intent) {
@@ -72,5 +74,6 @@ public class BaseBluetoothActivity extends Activity {
 			}
 		}
 	};
+
 
 }

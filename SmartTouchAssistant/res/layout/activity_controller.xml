@@ -1,79 +1,188 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/controllerLayout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/axis_device" >
+    android:layout_height="match_parent" >
 
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="SmartTouchAssist" />
+    <LinearLayout
+        android:id="@+id/buttons_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:background="#000000"
+        android:weightSum="1" >
 
-    <TextView
-        android:id="@+id/textPitch"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:text="Pitch" />
+        <LinearLayout
+            android:id="@+id/dpad"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="0.5"
+            android:orientation="vertical" >
 
-    <TextView
-        android:id="@+id/textAzimuth"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textRoll"
-        android:layout_below="@+id/textRoll"
-        android:text="Azimuth" />
+            <Button
+                android:id="@+id/dpad_up"
+                style="@style/dpad_button"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/dpad"
+                android:rotation="270" />
 
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:orientation="horizontal" >
+
+                <Button
+                    android:id="@+id/dpad_left"
+                    style="@style/dpad_button"
+                    android:background="@drawable/dpad"
+                    android:rotation="180" />
+
+                <View
+                    style="@style/dpad_button"
+                    android:background="@drawable/dpad_center" />
+
+                <Button
+                    android:id="@+id/dpad_right"
+                    style="@style/dpad_button"
+                    android:background="@drawable/dpad" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/dpad_down"
+                style="@style/dpad_button"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/dpad"
+                android:rotation="90" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/action_pad"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="0.5"
+            android:orientation="vertical" >
+
+            <Button
+                android:id="@+id/action_pad_y"
+                style="@style/dpad_button"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/action_y_non_transparent" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:orientation="horizontal" >
+
+                <Button
+                    android:id="@+id/action_pad_x"
+                    style="@style/dpad_button"
+                    android:background="@drawable/action_x_non_transparent" />
+
+                <View style="@style/dpad_button" />
+
+                <Button
+                    android:id="@+id/action_pad_b"
+                    style="@style/dpad_button"
+                    android:background="@drawable/action_b_non_transparent" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/action_pad_a"
+                style="@style/dpad_button"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/action_a_non_transparent" />
+        </LinearLayout>
+    </LinearLayout>
+    
     <Button
-        android:id="@+id/button1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_alignTop="@+id/textView1"
-        android:clickable="false"
-        android:text="Calibrate" />
+        android:id="@+id/controller_extra" 
+        android:layout_height="40dp"
+        android:layout_width="40dp"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="10dp"
+        android:background="@drawable/controller_extra_non_transparent"/>
 
-    <ImageView
-        android:id="@+id/imageMoveMe"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/textPitch"
-        android:layout_alignLeft="@+id/textPitch"
-        android:src="@drawable/mouse_cursor_icon" />
+    <RelativeLayout
+        android:id="@+id/controllerLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/axis_device"
+        android:visibility="gone" >
 
-    <TextView
-        android:id="@+id/textRoll"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textPitch"
-        android:layout_below="@+id/textPitch"
-        android:text="Roll" />
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SmartTouchAssist" />
 
-    <TextView
-        android:id="@+id/currentPitch"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView1"
-        android:layout_below="@+id/textView1"
-        android:text="Pitch" />
+        <TextView
+            android:id="@+id/textPitch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="Pitch" />
 
-    <TextView
-        android:id="@+id/currentRoll"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/currentPitch"
-        android:layout_below="@+id/currentPitch"
-        android:text="Roll" />
+        <TextView
+            android:id="@+id/textAzimuth"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/textRoll"
+            android:layout_below="@+id/textRoll"
+            android:text="Azimuth" />
 
-    <TextView
-        android:id="@+id/currentAzimuth"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/currentRoll"
-        android:layout_below="@+id/currentRoll"
-        android:text="Azimuth" />
+        <Button
+            android:id="@+id/button1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignTop="@+id/textView1"
+            android:clickable="false"
+            android:text="Calibrate" />
+
+        <ImageView
+            android:id="@+id/imageMoveMe"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/textPitch"
+            android:layout_alignLeft="@+id/textPitch"
+            android:src="@drawable/mouse_cursor_icon" />
+
+        <TextView
+            android:id="@+id/textRoll"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/textPitch"
+            android:layout_below="@+id/textPitch"
+            android:text="Roll" />
+
+        <TextView
+            android:id="@+id/currentPitch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/textView1"
+            android:layout_below="@+id/textView1"
+            android:text="Pitch" />
+
+        <TextView
+            android:id="@+id/currentRoll"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/currentPitch"
+            android:layout_below="@+id/currentPitch"
+            android:text="Roll" />
+
+        <TextView
+            android:id="@+id/currentAzimuth"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/currentRoll"
+            android:layout_below="@+id/currentRoll"
+            android:text="Azimuth" />
+    </RelativeLayout>
 
 </RelativeLayout>
