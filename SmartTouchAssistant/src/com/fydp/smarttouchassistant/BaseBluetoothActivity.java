@@ -29,7 +29,7 @@ public abstract class BaseBluetoothActivity extends Activity {
 		bindService(intent, myConnection, Context.BIND_AUTO_CREATE);
 	}
 
-	private void init() {
+	protected void init() {
 		LocalBroadcastManager.getInstance(this)
 				.registerReceiver(mMessageReceiver, new IntentFilter("foregroundSwitch"));
 		bluetoothBounded();

@@ -1,0 +1,26 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout_listitem"
+    android:layout_width="fill_parent"
+    android:layout_height="?android:attr/listPreferredItemHeight"
+    android:orientation="horizontal"
+    android:padding="6dip" >
+
+    <ImageView
+        android:id="@+id/fe_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginRight="6dip"
+        android:src="@drawable/ic_launcher" />
+
+    <TextView
+        android:id="@+id/fe_name"
+        android:layout_width="match_parent"
+        android:layout_height="26dip"
+        android:layout_gravity="center_vertical"
+        android:ellipsize="marquee"
+        android:singleLine="true"
+        android:text="file_name"
+        android:textColor="#FFFFFF"
+        android:textSize="20dp" />
+
+</LinearLayout>

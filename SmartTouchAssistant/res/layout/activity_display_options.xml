@@ -1,101 +1,111 @@
-<TableLayout
-	xmlns:android="http://schemas.android.com/apk/res/android"
-	android:layout_width="match_parent"
-	android:layout_height="match_parent"
-	android:shrinkColumns="*"  android:stretchColumns="*" android:background="#090202">  
-	<TableRow 
-	    android:layout_width="fill_parent"
-	    android:layout_height="wrap_content"
-	  	android:orientation="horizontal">		
-	    <Button
-	        android:layout_width="0dp"
-	        android:layout_height="wrap_content"
-	        android:background="@drawable/button_selector"
-	        android:layout_marginTop="3dip"
-	        android:layout_marginBottom="3dip"
-	        android:layout_marginLeft="3dip"
-	        android:layout_marginRight="3dip"
-	        android:layout_weight="0.5"
-	        android:layout_gravity="left|top"
-	        android:drawableTop="@drawable/keyboard_icon"
-	        android:onClick="macroOption"
-	        android:text="@string/macroOption" 
-	        android:textSize="14sp" />
-    
-    	<Button
-	        android:layout_width="0dp"
-	        android:layout_height="fill_parent"
-	        android:background="@drawable/button_selector"
-	        android:layout_marginTop="3dip"
-	        android:layout_marginBottom="3dip"
-	        android:layout_marginLeft="3dip"
-	        android:layout_marginRight="3dip"
-	        android:drawableTop="@drawable/mouse_icon"
-	        android:layout_weight="0.5"
-	        android:onClick="mouseOption"
-	        android:text="@string/mouseOption"
-	        android:textSize="14sp" />
-	</TableRow>
-    
-    <TableRow 
-	    android:layout_width="fill_parent"
-	    android:layout_height="wrap_content"
-	  	android:orientation="horizontal">
-    
-    <Button
-        android:layout_width="0dp"
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#090202"
+    android:shrinkColumns="*"
+    android:stretchColumns="*" >
+
+    <TableRow
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/button_selector"
-        android:layout_marginTop="3dip"
-        android:layout_marginBottom="3dip"
-        android:layout_marginLeft="3dip"
-        android:layout_marginRight="3dip"
-        android:layout_weight="0.5"
-        android:drawableTop="@drawable/controller_icon"
-        android:onClick="controllerOption"
-        android:text="@string/controllerOption" 
-        android:textSize="14sp"/>
-    
-    <Button
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@drawable/button_selector"
-        android:layout_marginTop="3dip"
-        android:layout_marginBottom="3dip"
-        android:layout_marginLeft="3dip"
-        android:layout_marginRight="3dip"
-        android:layout_weight="0.5"
-        android:drawableTop="@drawable/numpad_icon"
-        android:onClick="numpadOption"
-        android:text="@string/numpadOption" 
-        android:textSize="14sp"/>
+        android:orientation="horizontal" >
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left|top"
+            android:layout_marginBottom="3dip"
+            android:layout_marginLeft="3dip"
+            android:layout_marginRight="3dip"
+            android:layout_marginTop="3dip"
+            android:layout_weight="0.5"
+            android:background="@drawable/button_selector"
+            android:drawableTop="@drawable/keyboard_icon"
+            android:onClick="macroOption"
+            android:text="@string/macroOption"
+            android:textSize="14sp" />
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_marginBottom="3dip"
+            android:layout_marginLeft="3dip"
+            android:layout_marginRight="3dip"
+            android:layout_marginTop="3dip"
+            android:layout_weight="0.5"
+            android:background="@drawable/button_selector"
+            android:drawableTop="@drawable/mouse_icon"
+            android:onClick="mouseOption"
+            android:text="@string/mouseOption"
+            android:textSize="14sp" />
     </TableRow>
-    <TableRow 
-	    android:layout_width="fill_parent"
-	    android:layout_height="wrap_content"
-	  	android:orientation="horizontal">
-    
-    <Button
-        android:layout_width="0dp"
+
+    <TableRow
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/button_selector"
-        android:layout_marginTop="3dip"
-        android:layout_marginBottom="3dip"
-        android:layout_marginLeft="3dip"
-        android:layout_marginRight="3dip"
-        android:drawableTop="@drawable/music_icon"
-        android:layout_weight="0.5"
-        android:onClick="multiMediaOption"
-        android:text="@string/multiMediaOption"
-        android:textSize="14sp" />
-    
-    <Space
-        android:layout_width="0dp"
-        android:layout_height="fill_parent" 
-        android:layout_marginBottom="3dip"
-        android:layout_marginLeft="3dip"
-        android:layout_marginRight="3dip"
-        android:layout_weight="0.5" />
+        android:orientation="horizontal" >
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="3dip"
+            android:layout_marginLeft="3dip"
+            android:layout_marginRight="3dip"
+            android:layout_marginTop="3dip"
+            android:layout_weight="0.5"
+            android:background="@drawable/button_selector"
+            android:drawableTop="@drawable/controller_icon"
+            android:onClick="controllerOption"
+            android:text="@string/controllerOption"
+            android:textSize="14sp" />
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="3dip"
+            android:layout_marginLeft="3dip"
+            android:layout_marginRight="3dip"
+            android:layout_marginTop="3dip"
+            android:layout_weight="0.5"
+            android:background="@drawable/button_selector"
+            android:drawableTop="@drawable/numpad_icon"
+            android:onClick="numpadOption"
+            android:text="@string/numpadOption"
+            android:textSize="14sp" />
     </TableRow>
-        
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="3dip"
+            android:layout_marginLeft="3dip"
+            android:layout_marginRight="3dip"
+            android:layout_marginTop="3dip"
+            android:layout_weight="0.5"
+            android:background="@drawable/button_selector"
+            android:drawableTop="@drawable/music_icon"
+            android:onClick="multiMediaOption"
+            android:text="@string/multiMediaOption"
+            android:textSize="14sp" />
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="3dip"
+            android:layout_marginLeft="3dip"
+            android:layout_marginRight="3dip"
+            android:layout_marginTop="3dip"
+            android:layout_weight="0.5"
+            android:background="@drawable/button_selector"
+            android:drawableTop="@drawable/folder_icon"
+            android:onClick="fileExplorerOption"
+            android:text="@string/fileExplorerOption"
+            android:textSize="14sp" />
+    </TableRow>
+
 </TableLayout>

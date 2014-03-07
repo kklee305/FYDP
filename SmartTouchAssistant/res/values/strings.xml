@@ -23,6 +23,7 @@
     <string name="controllerOption">Controller</string>
     <string name="numpadOption">Numpad</string>
     <string name="multiMediaOption">Multimedia controller</string>
+    <string name="fileExplorerOption">File Explorer</string>
     <string name="title_activity_controller">GamePad!</string>
     <string name="title_activity_multi_media">Change your multimedia controls</string>
     <string name="title_activity_numpad">Input numbers</string>

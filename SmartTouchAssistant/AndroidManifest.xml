@@ -29,10 +29,10 @@
         <activity
             android:name="com.fydp.smarttouchassistant.DisplayOptionsActivity"
             android:label="@string/title_activity_display_options"
-            android:parentActivityName="com.example.smarttouchassistant.MainScreen" >
+            android:parentActivityName="com.fydp.smarttouchassistant.MainScreen" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.smarttouchassistant.MainScreen" />
+                android:value="com.fydp.smarttouchassistant.MainScreen" />
         </activity>
         <activity
             android:name="com.fydp.smarttouchassistant.MacroActivity"
@@ -40,47 +40,55 @@
             android:parentActivityName="com.example.smarttouchassistant.DisplayOptionsActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.smarttouchassistant.DisplayOptionsActivity" />
+                android:value="com.fydp.smarttouchassistant.DisplayOptionsActivity" />
         </activity>
         <activity
             android:name="com.fydp.smarttouchassistant.MouseActivity"
             android:label="@string/title_activity_mouse"
-            android:parentActivityName="com.example.smarttouchassistant.DisplayOptionsActivity" >
+            android:parentActivityName="com.fydp.smarttouchassistant.DisplayOptionsActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.smarttouchassistant.DisplayOptionsActivity" />
+                android:value="com.fydp.smarttouchassistant.DisplayOptionsActivity" />
         </activity>
         <activity
             android:name="com.fydp.smarttouchassistant.MacroControllerActivity"
             android:label="@string/title_activity_macro_controller"
-            android:parentActivityName="com.example.smarttouchassistant.MacroActivity" >
+            android:parentActivityName="com.fydp.smarttouchassistant.MacroActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.smarttouchassistant.MacroActivity" />
+                android:value="com.fydp.smarttouchassistant.MacroActivity" />
         </activity>
         <activity
             android:name="com.fydp.smarttouchassistant.ControllerActivity"
             android:label="@string/title_activity_controller"
-            android:parentActivityName="com.example.smarttouchassistant.DisplayOptionsActivity" >
+            android:parentActivityName="com.fydp.smarttouchassistant.DisplayOptionsActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.smarttouchassistant.DisplayOptionsActivity" />
+                android:value="com.fydp.smarttouchassistant.DisplayOptionsActivity" />
         </activity>
         <activity
             android:name="com.fydp.smarttouchassistant.NumpadActivity"
             android:label="@string/title_activity_numpad"
-            android:parentActivityName="com.example.smarttouchassistant.DisplayOptionsActivity" >
+            android:parentActivityName="com.fydp.smarttouchassistant.DisplayOptionsActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.smarttouchassistant.DisplayOptionsActivity" />
+                android:value="com.fydp.smarttouchassistant.DisplayOptionsActivity" />
         </activity>
         <activity
             android:name="com.fydp.smarttouchassistant.MultiMediaActivity"
             android:label="@string/title_activity_multi_media"
-            android:parentActivityName="com.example.smarttouchassistant.DisplayOptionsActivity" >
+            android:parentActivityName="com.fydp.smarttouchassistant.DisplayOptionsActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.smarttouchassistant.DisplayOptionsActivity" />
+                android:value="com.fydp.smarttouchassistant.DisplayOptionsActivity" />
+        </activity>
+        <activity
+            android:name="com.fydp.smarttouchassistant.FileExplorerActivity"
+            android:label="@string/fileExplorerOption"
+            android:parentActivityName="com.fydp.smarttouchassistant.DisplayOptionsActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.fydp.smarttouchassistant.DisplayOptionsActivity" />
         </activity>
 
         <service android:name="com.fydp.service.BluetoothConnectionService" />

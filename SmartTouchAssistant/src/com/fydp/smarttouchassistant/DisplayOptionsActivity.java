@@ -48,6 +48,11 @@ public class DisplayOptionsActivity extends Activity {
     	startActivity(intent);
     }
 	
+	public void fileExplorerOption(View view) {
+    	Intent intent = new Intent(this, FileExplorerActivity.class);
+    	startActivity(intent);
+    }
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
