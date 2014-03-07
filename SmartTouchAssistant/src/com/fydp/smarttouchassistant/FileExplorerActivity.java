@@ -154,7 +154,7 @@ public class FileExplorerActivity extends BaseBluetoothActivity {
 		currentLocation.insert("E:", FILETYPE.FOLDER);
 
 		currentLocation = currentLocation.getChildren().get(0);
-		currentLocation.insert("Dipshit", FILETYPE.FOLDER);
+		currentLocation.insert("Bob", FILETYPE.FOLDER);
 		currentLocation.insert("Public", FILETYPE.FOLDER);
 
 		currentLocation = currentLocation.getChildren().get(0);
