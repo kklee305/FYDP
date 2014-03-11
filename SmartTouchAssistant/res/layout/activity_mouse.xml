@@ -1,51 +1,59 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/mouse_layout"
+    android:id="@+id/mouse_background"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="5dp"
+    android:background="#000000"
     android:clickable="false" >
 
-    <TextView
-        android:id="@+id/click_type"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:text="Tapp Tapp" />
+    <RelativeLayout
+        android:id="@+id/mouse_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="5dp"
+        android:background="#000000"
+        android:clickable="false">
 
-    <TextView
-        android:id="@+id/textScrollx"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/click_type"
-        android:layout_alignLeft="@+id/textView1"
-        android:layout_marginBottom="60dp"
-        android:text="x" />
+        <TextView
+            android:id="@+id/click_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:textColor="#FFFFFF" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/textScrollx"
-        android:layout_alignParentLeft="true"
-        android:text="Scroll Sample Distance"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        <TextView
+            android:id="@+id/textScrollx"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/click_type"
+            android:layout_alignLeft="@+id/textView1"
+            android:layout_marginBottom="60dp"
+            android:text="x" />
 
-    <TextView
-        android:id="@+id/textScrolly"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textScrollx"
-        android:layout_alignTop="@+id/textScrollx"
-        android:layout_marginTop="20dp"
-        android:text="y" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/textScrollx"
+            android:layout_alignParentLeft="true"
+            android:text="Scroll Sample Distance"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/click_type"
-        android:text="Current"
-        android:textAppearance="?android:attr/textAppearanceSmall" />
+        <TextView
+            android:id="@+id/textScrolly"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/textScrollx"
+            android:layout_alignTop="@+id/textScrollx"
+            android:layout_marginTop="20dp"
+            android:text="y" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignRight="@+id/click_type"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+    </RelativeLayout>
 
 </RelativeLayout>

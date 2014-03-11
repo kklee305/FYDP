@@ -160,7 +160,7 @@ public class FileExplorerActivity extends BaseBluetoothActivity {
 		currentLocation = currentLocation.getChildren().get(0);
 		currentLocation.insert("My Music", FILETYPE.FOLDER);
 		currentLocation.insert("My Documents", FILETYPE.FOLDER);
-		currentLocation.insert("dickbutt.png", FILETYPE.FILE);
+		currentLocation.insert("SmartTouchAssistant.txt", FILETYPE.FILE);
 
 		currentLocation = currentLocation.getChildren().get(0);
 		currentLocation.insert("OMG.mp3", FILETYPE.FILE);

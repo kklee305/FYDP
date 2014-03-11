@@ -68,7 +68,7 @@
                 android:id="@+id/action_pad_y"
                 style="@style/dpad_button"
                 android:layout_gravity="center_horizontal"
-                android:background="@drawable/action_y_non_transparent" />
+                android:background="@drawable/action_y" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -79,21 +79,21 @@
                 <Button
                     android:id="@+id/action_pad_x"
                     style="@style/dpad_button"
-                    android:background="@drawable/action_x_non_transparent" />
+                    android:background="@drawable/action_x" />
 
                 <View style="@style/dpad_button" />
 
                 <Button
                     android:id="@+id/action_pad_b"
                     style="@style/dpad_button"
-                    android:background="@drawable/action_b_non_transparent" />
+                    android:background="@drawable/action_b" />
             </LinearLayout>
 
             <Button
                 android:id="@+id/action_pad_a"
                 style="@style/dpad_button"
                 android:layout_gravity="center_horizontal"
-                android:background="@drawable/action_a_non_transparent" />
+                android:background="@drawable/action_a" />
         </LinearLayout>
     </LinearLayout>
     
@@ -104,7 +104,7 @@
         android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
         android:layout_margin="10dp"
-        android:background="@drawable/controller_extra_non_transparent"/>
+        android:background="@drawable/controller_extra"/>
 
     <RelativeLayout
         android:id="@+id/controllerLayout"

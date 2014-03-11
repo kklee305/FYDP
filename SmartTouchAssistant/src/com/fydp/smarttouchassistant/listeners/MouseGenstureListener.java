@@ -51,6 +51,7 @@ public class MouseGenstureListener extends SimpleOnGestureListener {
 	public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
 		scrollXView.setText("x: " + String.valueOf(distanceX));
 		scrollYView.setText("y: " + String.valueOf(distanceY));
+		clickTypeView.setText("Mouse Scroll");
 		btService.sendMessage(MOUSE_HEADER + String.valueOf(distanceX) + "/" + String.valueOf(distanceY));
 		return true;
 	}

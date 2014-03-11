@@ -25,7 +25,7 @@ public class MouseActivity extends BaseBluetoothActivity {
 	
 	@Override
 	protected void bluetoothBounded() {
-		mouseLayout = (RelativeLayout) findViewById(R.id.mouse_layout);
+		mouseLayout = (RelativeLayout) findViewById(R.id.mouse_background);
 		MouseGenstureListener gestureListener = new MouseGenstureListener(btService, mouseLayout);
 		mDetector = new GestureDetectorCompat(getBaseContext(), gestureListener);
 	}
