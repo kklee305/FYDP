@@ -29,7 +29,7 @@ public class NumpadActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_numpad);
 		Intent intent = new Intent(this, BluetoothConnectionService.class);
-        bindService(intent, myConnection, Context.BIND_AUTO_CREATE);   
+        bindService(intent, myConnection, Context.BIND_AUTO_CREATE);
 		// Show the Up button in the action bar.
 		setupActionBar();
 		
@@ -54,6 +54,8 @@ public class NumpadActivity extends Activity {
 	    public void onReceive(Context context, Intent intent) {
 	        String newForeground = intent.getStringExtra("foreground");
 	        Log.d("DEBUG", this.toString() + " received foreground switch request to " + newForeground);
+			Log.d("", ""+ this.getClass().getSimpleName());
+			Log.d("", "wtf");
 	        if(!newForeground.equals("numpad")) {
 	        	Intent next = null;
 		        if(newForeground.equals("mouse")) {

@@ -22,7 +22,6 @@ public abstract class BaseBluetoothActivity extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 
 		Intent intent = new Intent(this, BluetoothConnectionService.class);
@@ -34,7 +33,7 @@ public abstract class BaseBluetoothActivity extends Activity {
 				.registerReceiver(mMessageReceiver, new IntentFilter("foregroundSwitch"));
 		bluetoothBounded();
 	}
-	
+
 	protected abstract void bluetoothBounded();
 
 	// Bind service to BT connection
@@ -52,28 +51,28 @@ public abstract class BaseBluetoothActivity extends Activity {
 		}
 	};
 
-	//TODO rework this
+	// TODO rework this
 	private BroadcastReceiver mMessageReceiver = new BroadcastReceiver() {
 		@Override
 		public void onReceive(Context context, Intent intent) {
 			String newForeground = intent.getStringExtra("foreground");
 			Log.d("DEBUG", this.toString() + " received foreground switch request to " + newForeground);
-			if (!newForeground.equals("mouse")) {
-				Intent next = null;
-				if (newForeground.equals("numpad")) {
-					next = new Intent(context, NumpadActivity.class);
-				} else if (newForeground.equals("controller")) {
-					next = new Intent(context, ControllerActivity.class);
-				} else if (newForeground.equals("macro")) {
-					next = new Intent(context, MacroActivity.class);
-				} else if (newForeground.equals("multimedia")) {
-					next = new Intent(context, MultiMediaActivity.class);
-				}
-				startActivity(next);
-				LocalBroadcastManager.getInstance(context).unregisterReceiver(mMessageReceiver);
+			Log.d("DEBUG", this.getClass().getSimpleName());
+			Intent next = null;
+			if (newForeground.equals("mouse")) {
+				next = new Intent(context, MouseActivity.class);
+			} else if (newForeground.equals("numpad")) {
+				next = new Intent(context, NumpadActivity.class);
+			} else if (newForeground.equals("controller")) {
+				next = new Intent(context, ControllerActivity.class);
+			} else if (newForeground.equals("macro")) {
+				next = new Intent(context, MacroActivity.class);
+			} else if (newForeground.equals("multimedia")) {
+				next = new Intent(context, MultiMediaActivity.class);
 			}
+			startActivity(next);
+			LocalBroadcastManager.getInstance(context).unregisterReceiver(mMessageReceiver);
 		}
 	};
-
 
 }

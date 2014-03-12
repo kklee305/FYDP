@@ -5,38 +5,38 @@ import java.util.List;
 
 import com.fydp.smarttouchassistant.FileExplorerActivity.FILETYPE;
 
-public class FileDirectoryTree<T> {
-	private Node<T> root;
+public class FileDirectoryTree {
+	private Node root;
 
-	public FileDirectoryTree(T rootData) {
-		root = new Node<T>(rootData, FILETYPE.FOLDER, null);
+	public FileDirectoryTree(String rootData) {
+		root = new Node(rootData, FILETYPE.FOLDER, null);
 	}
 
-	public Node<T> getRoot() {
+	public Node getRoot() {
 		return root;
 	}
 
-	public static class Node<T> {
-		private T data;
-		private Node<T> parent;
-		private List<Node<T>> children;
+	public static class Node {
+		private String data;
+		private Node parent;
+		private List<Node> children;
 		private FILETYPE dataType;
 
-		public Node(T data, FILETYPE dataType, Node<T> parent) {
+		public Node(String data, FILETYPE dataType, Node parent) {
 			this.data = data;
 			this.dataType = dataType;
 			this.parent = parent;
 		}
 
-		public void insert(T data, FILETYPE dataType) {
-			Node<T> node = new Node<T>(data, dataType, this);
+		public void insert(String data, FILETYPE dataType) {
+			Node node = new Node(data, dataType, this);
 			if (children == null) {
-				children = new ArrayList<Node<T>>();
+				children = new ArrayList<Node>();
 			}
 			children.add(node);
 		}
 
-		public T getData() {
+		public String getData() {
 			return data;
 		}
 
@@ -44,15 +44,29 @@ public class FileDirectoryTree<T> {
 			return dataType;
 		}
 
-		public Node<T> getParent() {
+		public Node getParent() {
 			return parent;
 		}
 
-		public List<Node<T>> getChildren() {
+		public List<Node> getChildren() {
 			if (children == null) {
-				children = new ArrayList<Node<T>>();
+				children = new ArrayList<Node>();
 			}
 			return children;
+		}
+
+		public String getDirectory() {
+			String path = data;
+			Node temp = this;
+			while (temp.getParent() != null){
+				path = parent.getData() + "\\" + path;
+				temp = temp.getParent();
+			}
+			return path;
+		}
+		
+		public String toString() {
+			return data;
 		}
 	}
 

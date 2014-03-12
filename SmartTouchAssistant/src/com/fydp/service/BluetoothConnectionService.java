@@ -221,7 +221,8 @@ public class BluetoothConnectionService extends Service {
 					// Send the obtained bytes to the UI activity
 					Log.d(DEBUG_TAG, "Received: " + received);
 					SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
-					if (sharedPrefs.getBoolean(AUTO_SWITCHING_PREF, false)) {
+					if (true) {// sharedPrefs.getBoolean(AUTO_SWITCHING_PREF,
+								// false)) {
 						for (int i = 0; i < foregrounds.length; i++) {
 							if (received.contains(foregrounds[i])) {
 								Intent intent = new Intent("foregroundSwitch");
