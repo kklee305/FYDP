@@ -34,8 +34,6 @@ public class BluetoothConnectionActivity extends Activity {
 		Intent intent = new Intent(this, BluetoothConnectionService.class);
         bindService(intent, myConnection, Context.BIND_AUTO_CREATE);
         
-        final Intent nextActivityIntent = new Intent(this, DisplayOptionsActivity.class);
-        
         final BluetoothAdapter mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
         while(!mBluetoothAdapter.isEnabled()) { };
         
@@ -67,10 +65,18 @@ public class BluetoothConnectionActivity extends Activity {
             public void onClick(View v) {
                 int deviceNumber = selectorSpinner.getSelectedItemPosition();
                 btService.connectToDevice(deviceNames.get(deviceNumber), deviceAddresses.get(deviceNumber));
-                startActivity(nextActivityIntent);
+                findViewById(R.id.bb_connection_spinner).setVisibility(View.VISIBLE);
+                v.setVisibility(View.GONE);
             }
         });
 	}	
+	
+	@Override
+	protected void onPause() {
+		super.onPause();
+		findViewById(R.id.bb_connection_spinner).setVisibility(View.GONE);
+		findViewById(R.id.startBluetooth).setVisibility(View.VISIBLE);
+	}
 	
 	@Override
 	protected void onStop() {
@@ -89,18 +95,6 @@ public class BluetoothConnectionActivity extends Activity {
 	        isBound = false;
 	    }    	    
 	};
-	   
-	public void startLeon(View view) {
-		Intent intent = new Intent(this, DisplayOptionsActivity.class);    	
-    	btService.connectToDevice("LEONZHANG-MSI", "40:61:86:42:38:14");
-		startActivity(intent);
-	}
-	
-	public void startChris(View view) {
-		Intent intent = new Intent(this, DisplayOptionsActivity.class);    	
-    	btService.connectToDevice("CHRIS-PC", "00:26:83:14:69:43");
-		startActivity(intent);
-	}
  
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {

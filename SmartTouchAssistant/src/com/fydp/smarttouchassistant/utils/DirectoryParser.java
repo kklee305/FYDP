@@ -9,15 +9,13 @@ import com.fydp.smarttouchassistant.FileExplorerActivity.FILETYPE;
 import com.fydp.smarttouchassistant.utils.FileDirectoryTree.Node;
 
 public class DirectoryParser {
-	public static List<Node> parse(String raw, String parentDirectory, Node directory) {
-		if (!raw.contains("filedirectory") || raw.isEmpty()) {
+	public static List<Node> parse(String raw, Node directory) {
+		Log.d("parsing", raw);
+		if (!raw.contains("filedirectory#") || raw.isEmpty()) {
 			return null;
 		}
 		List<Node> children = new ArrayList<Node>();
-		String temp = raw.replaceAll("filedirectory", "");
-		Log.d("parser header", temp);
-		temp = temp.replaceAll(parentDirectory + "\\", "");
-		Log.d("parser parent", temp);
+		String temp = raw.replaceFirst("filedirectory#", "");
 		int tempIndex;
 		FILETYPE fileType;
 		while (!temp.isEmpty()) {
@@ -39,10 +37,8 @@ public class DirectoryParser {
 				Log.d("parser wtf", "firstIndex not type " + temp.substring(0, 1));
 				break;
 			}
-			Log.d("parser file", "File " + temp.substring(1, tempIndex));
 			children.add(new Node(temp.substring(1, tempIndex), fileType, directory));
-			temp = temp.substring(tempIndex); // TODO
-			Log.d("parser new@" + tempIndex, temp);
+			temp = temp.substring(tempIndex);
 		}
 
 		return children;

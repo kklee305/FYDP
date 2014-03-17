@@ -23,14 +23,25 @@ public abstract class BaseBluetoothActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		
+	}
 
+	@Override
+	protected void onResume() {
+		super.onResume();
 		Intent intent = new Intent(this, BluetoothConnectionService.class);
 		bindService(intent, myConnection, Context.BIND_AUTO_CREATE);
 	}
 
+	@Override
+	protected void onPause() {
+		super.onPause();
+		unbindService(myConnection);
+	}
+
 	protected void init() {
-		LocalBroadcastManager.getInstance(this)
-				.registerReceiver(mMessageReceiver, new IntentFilter("foregroundSwitch"));
+		LocalBroadcastManager.getInstance(this).registerReceiver(
+				mMessageReceiver, new IntentFilter("foregroundSwitch"));
 		bluetoothBounded();
 	}
 
@@ -51,13 +62,12 @@ public abstract class BaseBluetoothActivity extends Activity {
 		}
 	};
 
-	// TODO rework this
 	private BroadcastReceiver mMessageReceiver = new BroadcastReceiver() {
 		@Override
 		public void onReceive(Context context, Intent intent) {
 			String newForeground = intent.getStringExtra("foreground");
-			Log.d("DEBUG", this.toString() + " received foreground switch request to " + newForeground);
-			Log.d("DEBUG", this.getClass().getSimpleName());
+			Log.d("DEBUG", this.toString()
+					+ " received foreground switch request to " + newForeground);
 			Intent next = null;
 			if (newForeground.equals("mouse")) {
 				next = new Intent(context, MouseActivity.class);
@@ -69,9 +79,12 @@ public abstract class BaseBluetoothActivity extends Activity {
 				next = new Intent(context, MacroActivity.class);
 			} else if (newForeground.equals("multimedia")) {
 				next = new Intent(context, MultiMediaActivity.class);
+			} else {
+				return;
 			}
 			startActivity(next);
-			LocalBroadcastManager.getInstance(context).unregisterReceiver(mMessageReceiver);
+			LocalBroadcastManager.getInstance(context).unregisterReceiver(
+					mMessageReceiver);
 		}
 	};
 

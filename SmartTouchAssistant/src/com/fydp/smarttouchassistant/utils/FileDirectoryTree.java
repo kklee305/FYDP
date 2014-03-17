@@ -3,6 +3,8 @@ package com.fydp.smarttouchassistant.utils;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.util.Log;
+
 import com.fydp.smarttouchassistant.FileExplorerActivity.FILETYPE;
 
 public class FileDirectoryTree {
@@ -35,6 +37,10 @@ public class FileDirectoryTree {
 			}
 			children.add(node);
 		}
+		
+		public void insertChildren(List<Node> children) {
+			this.children = children;
+		}
 
 		public String getData() {
 			return data;
@@ -56,10 +62,10 @@ public class FileDirectoryTree {
 		}
 
 		public String getDirectory() {
-			String path = data;
+			String path = data + "\\\\";
 			Node temp = this;
 			while (temp.getParent() != null){
-				path = parent.getData() + "\\" + path;
+				path = temp.getParent().getData() + "\\\\" + path;
 				temp = temp.getParent();
 			}
 			return path;

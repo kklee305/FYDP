@@ -7,10 +7,10 @@
 
     <ImageView
         android:id="@+id/fe_icon"
-        android:layout_width="wrap_content"
+        android:layout_width="60dp"
         android:layout_height="match_parent"
-        android:layout_marginRight="6dip"
-        android:src="@drawable/ic_launcher" />
+        android:src="@drawable/fe_folder_icon" 
+        android:scaleType="fitCenter"/>
 
     <TextView
         android:id="@+id/fe_name"

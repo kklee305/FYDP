@@ -1,7 +1,6 @@
 package com.fydp.smarttouchassistant.utils;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,7 +30,7 @@ public class ListAdapter extends ArrayAdapter<String> {
 	    View listView = inflater.inflate(R.layout.fe_listitem, parent, false);
 	    TextView fileName = (TextView) listView.findViewById(R.id.fe_name);
 	    ImageView imageView = (ImageView) listView.findViewById(R.id.fe_icon);
-	    Log.d("","@@@ position:" + position + ", title: " + files[position]);
+//	    Log.d("","@@@ position:" + position + ", title: " + files[position]);
 	    fileName.setText(files[position]);
 	    if (fileType[position] == FILETYPE.FOLDER) {
 	    	imageView.setImageResource(R.drawable.fe_folder_icon);
