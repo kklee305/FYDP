@@ -51,7 +51,7 @@
         android:layout_margin="5dp"
         android:background="#787474"
         android:onClick="saveMacros"
-        android:text="Confirm" />
+        android:text="Save" />
 
     <Button
         android:layout_width="wrap_content"
@@ -59,7 +59,16 @@
         android:layout_margin="5dp"
         android:background="#787474"
         android:onClick="loadMacros"
-        android:visibility="gone"
         android:text="Load" />
+
+    <Button
+        android:id="@+id/clear_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:background="#787474"
+        android:onClick="clearMacros"
+        android:text="Clear"
+        android:visibility="gone" />
 
 </LinearLayout>

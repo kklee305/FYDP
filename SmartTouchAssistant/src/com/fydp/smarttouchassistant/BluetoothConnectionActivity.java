@@ -21,6 +21,7 @@ import android.widget.Spinner;
 
 import com.fydp.service.BluetoothConnectionService;
 import com.fydp.service.BluetoothConnectionService.LocalBinder;
+import com.fydp.smarttouchassistant.config.CommonConfig;
 
 public class BluetoothConnectionActivity extends Activity {
 
@@ -67,6 +68,11 @@ public class BluetoothConnectionActivity extends Activity {
                 btService.connectToDevice(deviceNames.get(deviceNumber), deviceAddresses.get(deviceNumber));
                 findViewById(R.id.bb_connection_spinner).setVisibility(View.VISIBLE);
                 v.setVisibility(View.GONE);
+                
+                if (CommonConfig.aCommonConfig().isDebuggable()) {
+                	Intent intent = new Intent(getBaseContext(), DisplayOptionsActivity.class);
+                	startActivity(intent);
+                }
             }
         });
 	}	

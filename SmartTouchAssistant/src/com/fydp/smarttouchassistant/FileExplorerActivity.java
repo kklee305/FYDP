@@ -29,7 +29,7 @@ import com.fydp.service.BluetoothConnectionService.LocalBinder;
 import com.fydp.smarttouchassistant.utils.DirectoryParser;
 import com.fydp.smarttouchassistant.utils.FileDirectoryTree;
 import com.fydp.smarttouchassistant.utils.FileDirectoryTree.Node;
-import com.fydp.smarttouchassistant.utils.ListAdapter;
+import com.fydp.smarttouchassistant.utils.FileExplorerListAdapter;
 
 public class FileExplorerActivity extends Activity {
 
@@ -169,7 +169,7 @@ public class FileExplorerActivity extends Activity {
 			final List<Node> children) {
 		String[] fileNameArray = new String[fileName.size()];
 		FILETYPE[] fileTypeArray = new FILETYPE[fileType.size()];
-		ListAdapter adapter = new ListAdapter(this,
+		FileExplorerListAdapter adapter = new FileExplorerListAdapter(this,
 				fileName.toArray(fileNameArray),
 				fileType.toArray(fileTypeArray));
 

@@ -7,6 +7,7 @@ import java.util.Set;
 import java.util.UUID;
 
 import com.fydp.smarttouchassistant.DisplayOptionsActivity;
+import com.fydp.smarttouchassistant.config.CommonConfig;
 
 import android.app.Service;
 import android.bluetooth.BluetoothAdapter;
@@ -25,10 +26,8 @@ import android.widget.Toast;
 public class BluetoothConnectionService extends Service {
 	private static final String AUTO_SWITCHING_PREF = "auto_switching";
 	private final IBinder mBinder = new LocalBinder();
-	private static String[] contexts = { "macro", "mouse", "numpad",
-			"multimedia", "controller", "filedirectory" };
-	private static String[] foregrounds = { "WINWORD", "explorer", "calc",
-			"wmplayer", "controller", "filedirectory" };
+	private static String[] contexts = { "macro", "mouse", "numpad", "multimedia", "controller", "filedirectory" };
+	private static String[] foregrounds = { "WINWORD", "explorer", "calc", "wmplayer", "controller", "filedirectory" };
 
 	// Message types sent from the BluetoothChatService Handler
 	public static final int MESSAGE_STATE_CHANGE = 1;
@@ -38,8 +37,7 @@ public class BluetoothConnectionService extends Service {
 	public static final int MESSAGE_TOAST = 5;
 
 	// Well known SPP UUID
-	private static final UUID MY_UUID = UUID
-			.fromString("00001101-0000-1000-8000-00805F9B34FB");
+	private static final UUID MY_UUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
 
 	public static final String DEBUG_TAG = "DEBUG";
 	public static final String ERROR_TAG = "ERROR";
@@ -90,8 +88,7 @@ public class BluetoothConnectionService extends Service {
 	@Override
 	public void onDestroy() {
 		// Tell the user we stopped.
-		Toast.makeText(this, "Bluetooth Service Stopped", Toast.LENGTH_SHORT)
-				.show();
+		Toast.makeText(this, "Bluetooth Service Stopped", Toast.LENGTH_SHORT).show();
 	}
 
 	@Override
@@ -101,8 +98,7 @@ public class BluetoothConnectionService extends Service {
 
 	public void connectToDevice(String name, String address) {
 		for (BluetoothDevice device : pairedDevices) {
-			if (device.getName().equals(name)
-					&& device.getAddress().equals(address)) {
+			if (device.getName().equals(name) && device.getAddress().equals(address)) {
 				mConnectThread = new ConnectThread(device);
 				mConnectThread.start();
 				Log.d(DEBUG_TAG, "Bluetooth Connection found");
@@ -155,8 +151,7 @@ public class BluetoothConnectionService extends Service {
 			if (mmDevice.getBondState() == BluetoothDevice.BOND_BONDED) {
 				// Connect to device automatically
 				try {
-					mmSocket = mmDevice
-							.createInsecureRfcommSocketToServiceRecord(MY_UUID);
+					mmSocket = mmDevice.createInsecureRfcommSocketToServiceRecord(MY_UUID);
 				} catch (IOException e) {
 					Log.e(DEBUG_TAG, "socket not created");
 				}
@@ -218,9 +213,11 @@ public class BluetoothConnectionService extends Service {
 			int bytes; // bytes returned from read()
 
 			Log.d(DEBUG_TAG, "Connected thread started");
-			Intent nextActivityIntent = new Intent(getBaseContext(), DisplayOptionsActivity.class);
-			nextActivityIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-			getApplication().startActivity(nextActivityIntent);
+			if (!CommonConfig.aCommonConfig().isDebuggable()) {
+				Intent nextActivityIntent = new Intent(getBaseContext(), DisplayOptionsActivity.class);
+				nextActivityIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+				getApplication().startActivity(nextActivityIntent);
+			}
 			// Keep listening to the InputStream until an exception occurs
 			while (true) {
 				try {
@@ -229,30 +226,24 @@ public class BluetoothConnectionService extends Service {
 					String received = new String(buffer, 0, bytes, "UTF-8");
 					// Send the obtained bytes to the UI activity
 					Log.d(DEBUG_TAG, "Received: " + received);
-					SharedPreferences sharedPrefs = PreferenceManager
-							.getDefaultSharedPreferences(context);
-					if (received.contains("filedirectory#")) {
+					
+					SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
+					if (sharedPrefs.getBoolean(AUTO_SWITCHING_PREF, false)) {
+						String broadcast = received;
 						Intent intent = new Intent("foregroundSwitch");
-						intent.putExtra("foreground", received);
-						LocalBroadcastManager.getInstance(context)
-								.sendBroadcast(intent);
-					} else if (sharedPrefs.getBoolean(AUTO_SWITCHING_PREF,
-							false)) {
 						for (int i = 0; i < foregrounds.length; i++) {
 							if (received.contains(foregrounds[i])) {
-								Intent intent = new Intent("foregroundSwitch");
-								intent.putExtra("foreground", contexts[i]);
-								Log.d(DEBUG_TAG, "sent foreground switch to "
-										+ contexts[i]);
-								LocalBroadcastManager.getInstance(context)
-										.sendBroadcast(intent);
+								broadcast =  contexts[i];
+								Log.d(DEBUG_TAG, "sent foreground switch to " + contexts[i]);
 								break;
 							}
 						}
+						intent.putExtra("foreground", broadcast);
+						CommonConfig.aCommonConfig().setCurrentContext(broadcast);
+						LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
 					} else {
 						Log.d(DEBUG_TAG, "Auto switching off, ignored!");
 					}
-
 				} catch (IOException e) {
 					break;
 				}
@@ -304,8 +295,7 @@ public class BluetoothConnectionService extends Service {
 				}
 
 				Log.d(DEBUG_TAG, "sent foreground switch to " + contexts[i]);
-				LocalBroadcastManager.getInstance(context)
-						.sendBroadcast(intent);
+				LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
 				i++;
 				if (i == 5) {
 					i = 0;

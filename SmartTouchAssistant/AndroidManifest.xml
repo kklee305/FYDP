@@ -31,17 +31,14 @@
         <activity
             android:name="com.fydp.smarttouchassistant.DisplayOptionsActivity"
             android:label="@string/title_activity_display_options"
-            android:launchMode="singleTask"
-            android:parentActivityName="com.fydp.smarttouchassistant.BluetoothConnectionActivity" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.fydp.smarttouchassistant.MainScreen" />
+            android:launchMode="singleTask" >
         </activity>
         <activity
             android:name="com.fydp.smarttouchassistant.MacroActivity"
             android:label="@string/title_activity_macro"
             android:launchMode="singleTask"
-            android:parentActivityName="com.fydp.smarttouchassistant.DisplayOptionsActivity" >
+            android:parentActivityName="com.fydp.smarttouchassistant.DisplayOptionsActivity"
+            android:theme="@style/HaloTheme" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.fydp.smarttouchassistant.DisplayOptionsActivity" />

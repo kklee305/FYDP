@@ -3,7 +3,7 @@
     android:layout_width="fill_parent"
     android:layout_height="?android:attr/listPreferredItemHeight"
     android:orientation="horizontal"
-    android:padding="6dip" >
+    android:padding="6dp" >
 
     <ImageView
         android:id="@+id/fe_icon"
@@ -15,7 +15,7 @@
     <TextView
         android:id="@+id/fe_name"
         android:layout_width="match_parent"
-        android:layout_height="26dip"
+        android:layout_height="match_parent"
         android:layout_gravity="center_vertical"
         android:ellipsize="marquee"
         android:singleLine="true"
